@@ -1,113 +1,201 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <section className="bg-gray-300">
+        <div className="container py-12">
+          <h1 className="font-semibold text-4xl">
+            提升科技素養與優化教育實習之科技領域次專長師資培育
+          </h1>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </section>
+      <section>
+        <div className="container py-12">
+          <h2 className="font-semibold text-3xl text-center">計畫背景與概述</h2>
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <IntroCard
+                image_url="/images/計畫背景.png"
+                title="計畫背景"
+                description={
+                  <ul className="list-disc list-outside pl-4">
+                    <li>
+                      美國人工智慧研究實驗室 OpenAI 於 2022 年底推出
+                      ChatGPT，引發生成式 AI 在教學應用上的熱潮。
+                    </li>
+                    <li>
+                      新興科技對教育文化的影響以及相關挑戰（如 Google
+                      效應、深偽技術等）。
+                    </li>
+                  </ul>
+                }
+              />
+              <IntroCard
+                image_url="/images/計畫目標.png"
+                title="計畫目標"
+                description={
+                  <p>
+                    培養科技素養及正確使用科技的態度，特別針對國小教師的科技領域專長培育。
+                  </p>
+                }
+              />
+              <IntroCard
+                image_url="/images/教育部政策推動.png"
+                title="教育部政策推動"
+                description={
+                  <ul className="list-disc list-outside pl-4">
+                    <li>
+                      108 課綱將生活科技與資訊科技整併為「科技領域」的學習內涵。
+                    </li>
+                    <li>
+                      師藝司修訂國小教師加註科技領域專長及加註科技領域完整專長的課程架構表。
+                    </li>
+                  </ul>
+                }
+              />
+              <IntroCard
+                image_url="/images/學校配合政策.png"
+                title="學校配合政策"
+                description={
+                  <p>
+                    本校數學暨資訊教育學系致力於培育國小數學及資訊教育專長師資，並通過科技領域資訊專長加註的審查。
+                  </p>
+                }
+              />
+            </div>
+            <Link
+              href="/about"
+              className="btn btn-primary text-blue-500 ml-auto"
+            >
+              了解更多
+            </Link>
+          </div>
+          <h2 className="font-semibold text-3xl text-center">計畫架構</h2>
+          <div className="flex flex-col gap-4 w-fit m-auto">
+            <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-gray-300">
+              <div className="node shrink-0">
+                發展科技領域
+                <br />
+                師培專業課程
+              </div>
+              <ol className="children">
+                <li className="children-item">
+                  <div className="node shrink-0">師培課程</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">科技領域教材教法</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">科技素養與倫理</div>
+                    </li>
+                  </ol>
+                </li>
+                <li className="children-item">
+                  <div className="node shrink-0">專業課程</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">科技教育概論</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">創意與設計專題</div>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
+            <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-gray-300">
+              <div className="node shrink-0">
+                次專長加註辦法
+                <br />
+                修訂與推廣
+              </div>
+              <ol className="children">
+                <li className="children-item">
+                  <div className="node shrink-0">校內法規修訂</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">次大專長加註辦法</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">科技領域教學支援</div>
+                    </li>
+                  </ol>
+                </li>
+                <li className="children-item">
+                  <div className="node shrink-0">微學程推廣</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">專長加註學程開設</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">科技領域研習講座</div>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
+            <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-gray-300">
+              <div className="node shrink-0">
+                優化科技領域
+                <br />
+                實習機制
+              </div>
+              <ol className="children">
+                <li className="children-item">
+                  <div className="node shrink-0">整合區域資源</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">區域科技中心</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">國內實習學校</div>
+                    </li>
+                  </ol>
+                </li>
+                <li className="children-item">
+                  <div className="node shrink-0">多項與實習</div>
+                  <ol className="children">
+                    <li className="children-item">
+                      <div className="node">兒童與多元活動</div>
+                    </li>
+                    <li className="children-item">
+                      <div className="node">三週實習輔導</div>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
+
+interface IntroCardProps {
+  image_url: string;
+  title: string;
+  description: React.ReactNode;
+}
+
+const IntroCard: React.FC<IntroCardProps> = ({
+  image_url,
+  title,
+  description,
+}) => (
+  <div className="p-6 group">
+    <div className="flex flex-col justify-center items-center gap-4">
+      <Image
+        src={image_url}
+        alt={title}
+        width={400}
+        height={400}
+        className="w-60 max-w-full aspect-square object-contain object-center group-hover:scale-110 py-4"
+      />
+      <h4 className="font-semibold text-xl">{title}</h4>
+      {description}
+    </div>
+  </div>
+);
