@@ -4,7 +4,7 @@ import { IconHandClick } from "@tabler/icons-react";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <section className="bg-gray-300">
         <div className="container py-12">
           <h1 className="font-semibold text-4xl">
@@ -72,7 +72,7 @@ export default function Home() {
               </div>
               <Link
                 href="/about"
-                className="btn btn-primary text-blue-500 ml-auto"
+                className="btn text-white bg-breaker-bay-600 shadow-breaker-bay-800 ml-auto"
               >
                 了解更多
               </Link>
@@ -80,111 +80,135 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="bg-gray-200">
         <div className="container py-12">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">計畫架構</h2>
-            <div className="flex flex-col gap-4 w-fit m-auto">
-              <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-[#ffd273] [&_.node:hover]:shadow-lg">
-                <div className="node shrink-0">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-di-serria-500 shadow-di-serria-600">
+                <div className="btn shrink-0">
                   發展科技領域
                   <br />
                   師培專業課程
                 </div>
                 <ol className="children">
                   <li className="children-item">
-                    <div className="node shrink-0">師培課程</div>
+                    <div className="btn shrink-0">師培課程</div>
                     <ol className="children">
                       <li className="children-item">
-                        <Link
-                          href="/ios"
-                          className="node flex items-center gap-1"
-                        >
+                        <Link href="#" className="btn flex items-center gap-1">
                           科技領域教材教法
-                          <IconHandClick className="size-5 stroke-1.5 fill-white" />
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
                         </Link>
                       </li>
                       <li className="children-item">
-                        <Link
-                          href="/ios"
-                          className="node flex items-center gap-1"
-                        >
+                        <Link href="#" className="btn flex items-center gap-1">
                           科技素養與倫理
-                          <IconHandClick className="size-5 stroke-1.5 fill-white" />
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
                         </Link>
                       </li>
                     </ol>
                   </li>
                   <li className="children-item">
-                    <div className="node shrink-0">專業課程</div>
+                    <div className="btn shrink-0">專業課程</div>
                     <ol className="children">
                       <li className="children-item">
-                        <div className="node">科技教育概論</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          科技教育概論
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                       <li className="children-item">
-                        <div className="node">創意與設計專題</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          創意與設計專題
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                     </ol>
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-gray-300 [&_.node:hover]:shadow-lg">
-                <div className="node shrink-0">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-wafer-500 shadow-wafer-600">
+                <div className="btn shrink-0">
                   次專長加註辦法
                   <br />
                   修訂與推廣
                 </div>
                 <ol className="children">
                   <li className="children-item">
-                    <div className="node shrink-0">校內法規修訂</div>
+                    <div className="btn shrink-0">校內法規修訂</div>
                     <ol className="children">
                       <li className="children-item">
-                        <div className="node">次大專長加註辦法</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          次大專長加註辦法
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                       <li className="children-item">
-                        <div className="node">科技領域教學支援</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          科技領域教學支援
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                     </ol>
                   </li>
                   <li className="children-item">
-                    <div className="node shrink-0">微學程推廣</div>
+                    <div className="btn shrink-0">微學程推廣</div>
                     <ol className="children">
                       <li className="children-item">
-                        <div className="node">專長加註學程開設</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          專長加註學程開設
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                       <li className="children-item">
-                        <div className="node">科技領域研習講座</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          科技領域研習講座
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                     </ol>
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.node]:bg-gray-300 [&_.node:hover]:shadow-lg">
-                <div className="node shrink-0">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-mint-500 shadow-mint-600">
+                <div className="btn shrink-0">
                   優化科技領域
                   <br />
                   實習機制
                 </div>
                 <ol className="children">
                   <li className="children-item">
-                    <div className="node shrink-0">整合區域資源</div>
+                    <div className="btn shrink-0">整合區域資源</div>
                     <ol className="children">
                       <li className="children-item">
-                        <div className="node">區域科技中心</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          區域科技中心
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                       <li className="children-item">
-                        <div className="node">國內實習學校</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          國內實習學校
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                     </ol>
                   </li>
                   <li className="children-item">
-                    <div className="node shrink-0">多項與實習</div>
+                    <div className="btn shrink-0">多項與實習</div>
                     <ol className="children">
                       <li className="children-item">
-                        <div className="node">兒童與多元活動</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          兒童與多元活動
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                       <li className="children-item">
-                        <div className="node">三週實習輔導</div>
+                        <Link href="#" className="btn flex items-center gap-1">
+                          三週實習輔導
+                          <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
+                        </Link>
                       </li>
                     </ol>
                   </li>
@@ -194,7 +218,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }
 

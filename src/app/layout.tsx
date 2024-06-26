@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/header";
+import ScrollToTop from "@/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "提升科技素養與優化教育實習之科技領域次專長師資培育",
@@ -20,7 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <main>{children}</main>
+        {children}
+        <ScrollToTop />
       </body>
     </html>
   );
