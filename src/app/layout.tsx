@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Header from "@/header";
+
 export const metadata: Metadata = {
   title: "提升科技素養與優化教育實習之科技領域次專長師資培育",
   description: "提升科技素養與優化教育實習之科技領域次專長師資培育",
@@ -16,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

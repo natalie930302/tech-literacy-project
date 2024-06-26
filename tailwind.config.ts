@@ -44,6 +44,12 @@ const config: Config = {
           "2xl": "7rem",
         },
       },
+      strokeWidth: {
+        0: "0",
+        1: "1",
+        1.5: "1.5",
+        2: "2",
+      },
     },
   },
   plugins: [],
