@@ -30,7 +30,7 @@ const ScrollToTop = () => {
     <div className={`fixed ${isVisible ? "bottom-8" : "-bottom-20"} right-6`}>
       <button
         onClick={scrollToTop}
-        className="btn flex justify-center items-center size-10 !p-0 bg-denim-500 shadow-denim-600 text-white rounded-full"
+        className="flex justify-center items-center size-10 bg-denim-500 hover:bg-denim-700 text-white rounded-full"
       >
         <IconChevronUp />
       </button>

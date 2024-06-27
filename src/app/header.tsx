@@ -3,51 +3,51 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-gray-800 sticky z-50 top-0">
-      <nav>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header>
+      <nav className="fixed z-50 top-0 w-screen bg-gray-50 border-b shadow-md">
+        <div className="container">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
+            <div className="flex items-center gap-6">
+              <div className="shrink-0">
                 <Image
                   src="/images/logo.png"
-                  alt="Workflow"
+                  alt="logo"
                   width={300}
                   height={300}
                   className="size-8 object-contain"
                 />
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="flex items-center gap-4">
                   <Link
-                    href="#"
-                    className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/"
+                    className="text-sm border-y-2 border-transparent px-3 p-1.5 hover:border-b-denim-400"
                   >
-                    Dashboard
+                    首頁
                   </Link>
                   <Link
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/"
+                    className="text-sm border-y-2 border-transparent px-3 p-1.5 hover:border-b-denim-400"
                   >
-                    Team
+                    關於計畫
                   </Link>
                   <Link
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/"
+                    className="text-sm border-y-2 border-transparent px-3 p-1.5 hover:border-b-denim-400"
                   >
-                    Projects
+                    師培/專業課程
                   </Link>
                   <Link
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/"
+                    className="text-sm border-y-2 border-transparent px-3 p-1.5 hover:border-b-denim-400"
                   >
-                    Calendar
+                    次專長加註
                   </Link>
                   <Link
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/"
+                    className="text-sm border-y-2 border-transparent px-3 p-1.5 hover:border-b-denim-400"
                   >
-                    Reports
+                    實習資源
                   </Link>
                 </div>
               </div>

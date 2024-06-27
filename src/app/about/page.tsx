@@ -85,7 +85,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">計畫架構地圖</h2>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-goldenrod-400 shadow-goldenrod-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-goldenrod-400 shadow-goldenrod-600 p-0 md:p-6">
                 <div className="btn shrink-0">
                   發展科技領域
                   <br />
@@ -128,7 +128,7 @@ export default function Home() {
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-mulberry-400 shadow-mulberry-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-mulberry-400 shadow-mulberry-600 p-0 md:p-6">
                 <div className="btn shrink-0">
                   次專長加註辦法
                   <br />
@@ -171,7 +171,7 @@ export default function Home() {
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-patina-400 shadow-patina-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-patina-400 shadow-patina-600 p-0 md:p-6">
                 <div className="btn shrink-0">
                   優化科技領域
                   <br />
@@ -213,32 +213,6 @@ export default function Home() {
                     </ol>
                   </li>
                 </ol>
-              </div>
-              <div className="flex">
-                <article>
-                  <h4 className="font-semibold text-lg mb-2">
-                    本計畫推動目的如下：
-                  </h4>
-                  <ol className="list-decimal list-outside pl-4">
-                    <li>
-                      發展以科技素養能力與科技領域教學專業為核心的特色師資培育課程。
-                    </li>
-                    <li>
-                      推動科技領域次專長加註微學分學程，提升師資生科技領域教學能力。
-                    </li>
-                    <li>
-                      整合區域科技教育資源，締結教育實習夥伴關係，優化科技領域師資培育之實
-                      習機制。
-                    </li>
-                  </ol>
-                </article>
-                <Image
-                  src="/images/robot-intro.png"
-                  alt="robot"
-                  width={400}
-                  height={400}
-                  className="w-60 max-w-full aspect-square object-contain object-center"
-                />
               </div>
             </div>
           </div>
