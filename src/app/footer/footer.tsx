@@ -42,11 +42,9 @@ const Footer = () => {
     <footer className="bg-[url('/images/NTUE.png')] bg-no-repeat bg-cover bg-center">
       <div className="backdrop-blur-sm backdrop-brightness-50 backdrop-contrast-50">
         <div className="container pt-8 pb-4">
+          <h3 className="text-2xl font-semibold text-white mb-6">聯繫我們</h3>
           <div className="grid grid-cols-12 gap-6 mb-6">
             <div className="col-span-12 md:col-span-6">
-              <h3 className="text-2xl font-semibold text-white mb-6">
-                聯繫我們
-              </h3>
               <div className="text-sm text-gray-100 mb-6">
                 <div className="flex items-center gap-3">
                   <Link
@@ -85,18 +83,6 @@ const Footer = () => {
             </div>
             <div className="col-span-12 md:col-span-6">
               <form className="flex flex-col text-sm">
-                <div className="mb-4">
-                  <label htmlFor="name" className="block text-white mb-2">
-                    名稱
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="請輸入名稱..."
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
-                    required
-                  />
-                </div>
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-white mb-2">
                     電子郵件
