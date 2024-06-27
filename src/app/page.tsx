@@ -72,7 +72,7 @@ export default function Home() {
               </div>
               <Link
                 href="/about"
-                className="btn text-white bg-breaker-bay-600 shadow-breaker-bay-800 ml-auto"
+                className="btn text-white bg-denim-500 shadow-denim-600 ml-auto"
               >
                 了解更多
               </Link>
@@ -85,7 +85,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">計畫架構</h2>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-di-serria-500 shadow-di-serria-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-goldenrod-400 shadow-goldenrod-500">
                 <div className="btn shrink-0">
                   發展科技領域
                   <br />
@@ -128,7 +128,7 @@ export default function Home() {
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-wafer-500 shadow-wafer-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-mulberry-400 shadow-mulberry-500">
                 <div className="btn shrink-0">
                   次專長加註辦法
                   <br />
@@ -171,7 +171,7 @@ export default function Home() {
                   </li>
                 </ol>
               </div>
-              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-mint-500 shadow-mint-600">
+              <div className="mind-map w-fit text-sm md:text-base [&_.btn]:bg-patina-400 shadow-patina-500">
                 <div className="btn shrink-0">
                   優化科技領域
                   <br />
