@@ -237,7 +237,7 @@ export default function Home() {
                   alt="robot"
                   width={400}
                   height={400}
-                  className="w-60 max-w-full aspect-square object-contain object-center"
+                  className="hidden md:block w-60 max-w-full aspect-square object-contain object-center"
                 />
               </div>
             </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/header";
+import Footer from "@/footer/footer";
 import ScrollToTop from "@/scroll-to-top";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className="bg-gray-100 overflow-x-hidden">
         <Header />
         {children}
+        <Footer />
         <ScrollToTop />
       </body>
     </html>
