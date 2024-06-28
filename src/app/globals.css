@@ -49,13 +49,13 @@
     @apply transition-all duration-300;
     @apply disabled:opacity-50 disabled:cursor-auto disabled:shadow-none disabled:border-gray-400 disabled:text-gray-400;
   }
+  .no-outer-shadow {
+    --button-shadow-default: var(--shadow-inset), var(--hightlight-button);
+    --button-shadow-active: var(--shadow-inset-active);
+  }
   button.btn:active,
   a.btn:active {
     box-shadow: var(--button-shadow-active);
-  }
-  .btn.no-outer-shadow {
-    --button-shadow-default: var(--shadow-inset), var(--hightlight-button);
-    --button-shadow-active: var(--shadow-inset-active);
   }
 
   .mind-map {
@@ -99,7 +99,11 @@
   }
 
   .timeline .timeline-item {
-    @apply relative border-l-2 border-denim-600 px-6 pb-6;
+    @apply relative border-l-4 border-denim-600 px-6 pb-6;
+    @apply flex flex-col gap-2;
+  }
+  .timeline .timeline-item {
+    @apply relative border-l-4 border-denim-600 px-6 pb-6;
     @apply flex flex-col gap-2;
   }
   .timeline .timeline-item .title {
@@ -109,7 +113,8 @@
     @apply w-fit text-xs text-gray-600;
   }
   .timeline .timeline-item::before {
-    @apply content-[''] absolute top-0 -left-[8.75px] size-[16px] rounded-full bg-denim-600 border-2 border-denim-600;
+    @apply content-[''] absolute top-0 -left-[12px] size-[20px] !rounded-full bg-denim-500;
+    @apply btn no-outer-shadow p-0 shadow-denim-600;
   }
 }
 
