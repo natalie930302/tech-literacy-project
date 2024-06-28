@@ -103,10 +103,10 @@
     @apply flex flex-col gap-2;
   }
   .timeline .timeline-item .title {
-    @apply font-semibold text-lg text-denim-600;
+    @apply font-semibold text-xl text-denim-600;
   }
   .timeline .timeline-item .time {
-    @apply w-fit bg-gray-300 text-sm px-3 py-1;
+    @apply w-fit bg-gray-50 text-xs text-gray-600 px-3 py-1;
   }
   .timeline .timeline-item::before {
     @apply content-[''] absolute top-0 -left-[8.75px] size-[16px] rounded-full bg-gray-100 border-2 border-denim-600;
