@@ -223,14 +223,14 @@ const mindMapData: MindMapCardProps[] = [
       {
         title: "校內法規修訂",
         subnodes: [
-          { title: "次大專長加註辦法", href: "/" },
-          { title: "科技領域教學支援", href: "/" },
+          { title: "次專長加註辦法", href: "/" },
+          { title: "科技領域微學程", href: "/" },
         ],
       },
       {
         title: "微學程推廣",
         subnodes: [
-          { title: "專長加註學程開設", href: "/" },
+          { title: "專長加註學程說明會", href: "/" },
           { title: "科技領域研習講座", href: "/" },
         ],
       },

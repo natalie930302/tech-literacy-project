@@ -60,7 +60,7 @@
 
   .mind-map {
     @apply flex items-center;
-    @apply [--line-color:#333] [--gap-x:10px] md:[--gap-x:20px] [--gap-y:5px] md:[--gap-y:10px];
+    @apply [--line-color:#333] [--gap-x:10px] sm:[--gap-x:20px] [--gap-y:5px] sm:[--gap-y:10px];
   }
   .mind-map .children {
     @apply flex flex-col justify-center;
@@ -106,9 +106,28 @@
     @apply font-semibold text-xl text-denim-600;
   }
   .timeline .timeline-item .time {
-    @apply w-fit bg-gray-50 text-xs text-gray-600 px-3 py-1;
+    @apply w-fit text-xs text-gray-600;
   }
   .timeline .timeline-item::before {
-    @apply content-[''] absolute top-0 -left-[8.75px] size-[16px] rounded-full bg-gray-100 border-2 border-denim-600;
+    @apply content-[''] absolute top-0 -left-[8.75px] size-[16px] rounded-full bg-denim-600 border-2 border-denim-600;
+  }
+}
+
+@layer utilities {
+  .shadow-default {
+    --tw-shadow: 0 2px 6px -1px rgb(0 0 0 / 0.15),
+      0 -1px 4px -2px rgb(0 0 0 / 0.15);
+    --tw-shadow-colored: 0 2px 6px -1px var(--tw-shadow-color),
+      0 -1px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  .shadow-default-xl {
+    --tw-shadow: 0 8px 24px -4px rgb(0 0 0 / 0.15),
+      0 -4px 16px -8px rgb(0 0 0 / 0.15);
+    --tw-shadow-colored: 0 8px 24px -4px var(--tw-shadow-color),
+      0 -4px 16px -8px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }
