@@ -84,8 +84,8 @@ const config: Config = {
           sm: "1rem",
           DEFAULT: "1rem",
           lg: "3rem",
-          xl: "5rem",
-          "2xl": "7rem",
+          xl: "4rem",
+          "2xl": "5rem",
         },
       },
       strokeWidth: {

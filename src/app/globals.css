@@ -45,7 +45,7 @@
       var(--shadow-inset-active);
     box-shadow: var(--button-shadow-default);
     @apply text-center rounded-md;
-    @apply px-3 md:px-6 py-2 my-[var(--gap-y)];
+    @apply px-3 md:px-5 py-2 my-[var(--gap-y)];
     @apply transition-all duration-300;
     @apply disabled:opacity-50 disabled:cursor-auto disabled:shadow-none disabled:border-gray-400 disabled:text-gray-400;
   }
@@ -60,7 +60,7 @@
 
   .mind-map {
     @apply flex items-center;
-    @apply [--line-color:#333] [--gap-x:10px] sm:[--gap-x:20px] [--gap-y:5px] sm:[--gap-y:10px];
+    @apply [--line-color:#666] [--gap-x:10px] sm:[--gap-x:20px] [--gap-y:5px] sm:[--gap-y:10px];
   }
   .mind-map .children {
     @apply flex flex-col justify-center;
@@ -99,7 +99,7 @@
   }
 
   .timeline .timeline-item {
-    @apply relative border-l-4 border-denim-600 px-6 pb-6;
+    @apply relative border-l-2 border-denim-600 px-6 pb-6;
     @apply flex flex-col gap-2;
   }
   .timeline .timeline-item {
@@ -113,7 +113,7 @@
     @apply w-fit text-xs text-gray-600;
   }
   .timeline .timeline-item::before {
-    @apply content-[''] absolute top-0 -left-[12px] size-[20px] !rounded-full bg-denim-500;
+    @apply content-[''] absolute top-0 -left-[10px] size-[16px] !rounded-full bg-denim-500;
     @apply btn no-outer-shadow p-0 shadow-denim-600;
   }
 }

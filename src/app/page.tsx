@@ -176,7 +176,7 @@ const MindMapCard: React.FC<MindMapCardProps> = ({
   shadowClass,
 }) => (
   <div
-    className={`mind-map w-fit text-sm md:text-base ${bgClass} ${shadowClass}`}
+    className={`mind-map w-fit text-sm md:text-base p-4 ${bgClass} ${shadowClass}`}
   >
     {href ? (
       <Link href={href} className="bt flex items-center gap-1">
@@ -287,7 +287,7 @@ const StructureMapSection = () => (
     <div className="container py-16">
       <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
         <h2 className="font-semibold text-3xl text-center">計畫架構地圖</h2>
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
           {mindMapData.map((data, index) => (
             <MindMapCard
               key={index}
