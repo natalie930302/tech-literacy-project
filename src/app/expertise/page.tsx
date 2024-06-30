@@ -139,14 +139,85 @@ export default function Page() {
           <Breadcrumb />
         </div>
       </section>
-      <section className="bg-denim-900">
+      <section className="relative bg-denim-900">
         <div className="container py-8 md:py-16">
-          <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
-            <div className="flex items-center gap-1.5">
-              <IconSpeakerphone className="size-8 -rotate-12" />
-              研習講座/學程說明會最新公告
+          <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
+            <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
+              <div className="flex items-center gap-1.5">
+                <IconSpeakerphone className="size-8 -rotate-12" />
+                研習講座/學程說明會最新公告
+              </div>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+              <div className="col-span-2 flex flex-col lg:flex-row">
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                  <div className="flex flex-col justify-between gap-2 h-full">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-denim-200">2024.05.06 14:30</p>
+                      <h4 className="font-medium text-xl text-gray-50">
+                        專長加註學程說明會
+                      </h4>
+                      <p className="text-gray-200">
+                        發展以科技素養能力與科技領域教學專業為核心的特色師資培育課程。
+                        推動科技領域次專長加註微學分學程，提升師資生科技領域教學能力。
+                      </p>
+                    </div>
+                    <Link
+                      href="#"
+                      className="text-end text-denim-500 underline"
+                    >
+                      瞭解詳情
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                  <div className="flex flex-col justify-between gap-2 h-full">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-denim-200">2024.05.06 14:30</p>
+                      <h4 className="font-medium text-xl text-gray-50">
+                        專長加註學程說明會
+                      </h4>
+                      <p className="text-gray-200">
+                        發展以科技素養能力與科技領域教學專業為核心的特色師資培育課程。
+                      </p>
+                    </div>
+                    <Link
+                      href="#"
+                      className="text-end text-denim-500 underline"
+                    >
+                      瞭解詳情
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                  <div className="flex flex-col justify-between gap-2 h-full">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-denim-200">2024.05.06 14:30</p>
+                      <h4 className="font-medium text-xl text-gray-50">
+                        專長加註學程說明會
+                      </h4>
+                      <p className="text-gray-200">
+                        發展以科技素養能力與科技領域教學專業為核心的特色師資培育課程。
+                      </p>
+                    </div>
+                    <Link
+                      href="#"
+                      className="text-end text-denim-500 underline"
+                    >
+                      瞭解詳情
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <Image
+                src="/images/研習講座學程說明會最新公告.png"
+                alt="研習講座學程說明會最新公告"
+                width={1080}
+                height={1080}
+                className="col-span-1 relative object-contain object-bottom max-w-60 h-full md:max-w-full ml-auto"
+              />
             </div>
-          </h2>
+          </div>
         </div>
       </section>
       <section id="minor-specialization-guidelines">
