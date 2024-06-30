@@ -2,12 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className={`${isMenuOpen ? "active" : ""} group/header`}>
@@ -126,6 +132,10 @@ export default function Header() {
           </ul>
         </div>
       </nav>
+      <div
+        className="backdrop opacity-0 group-[&.active]/header:opacity-100 scale-0 group-[&.active]/header:scale-100 transition-show group-[&.active]/header:transition-hide"
+        onClick={closeMenu}
+      />
     </header>
   );
 }

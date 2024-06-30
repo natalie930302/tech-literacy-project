@@ -22,7 +22,13 @@
     @apply mx-auto px-4;
   }
   .backdrop {
-    @apply top-0 left-0 fixed z-40 w-dvw h-dvh backdrop-brightness-50;
+    @apply top-0 left-0 fixed z-30 w-full h-full backdrop-brightness-50;
+  }
+  .backdrop.transition-show {
+    transition: transform 0s ease-in-out 500ms, opacity 500ms ease-in-out;
+  }
+  .backdrop.transition-hide {
+    transition: transform 0s ease-in-out, opacity 500ms ease-in-out;
   }
 }
 

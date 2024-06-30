@@ -93,6 +93,10 @@ const config: Config = {
         1.5: "1.5",
         2: "2",
       },
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
+      },
     },
   },
   plugins: [],
