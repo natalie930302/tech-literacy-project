@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IconChevronRight } from "@tabler/icons-react";
 
-import GetNameByRoute from "@/utils/route";
+import { GetNameByRoute } from "@/utils/route";
 
 const Breadcrumb: React.FC = () => {
   const pathname = usePathname();

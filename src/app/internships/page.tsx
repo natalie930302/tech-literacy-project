@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Breadcrumb from "@/ui/breadcrumb/breadcrumb";
+import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 
 export default function Page() {
   return (

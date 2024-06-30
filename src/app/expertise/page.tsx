@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IconFileText, IconSpeakerphone } from "@tabler/icons-react";
-import Breadcrumb from "@/ui/breadcrumb/breadcrumb";
+import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 
 export default function Page() {
   const courses = [

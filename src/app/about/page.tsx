@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IconHandClick } from "@tabler/icons-react";
-import Breadcrumb from "@/ui/breadcrumb/breadcrumb";
+import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 
 export default function Page() {
   const introCardData: IntroCardProps[] = [

@@ -18,8 +18,6 @@ const RouteNames: { [key: string]: string } = {
   "three-week-internship-guidance": "三週實習輔導",
 };
 
-const GetNameByRoute = (route: string) => {
+export const GetNameByRoute = (route: string) => {
   return RouteNames[route] || null;
 };
-
-export default GetNameByRoute;

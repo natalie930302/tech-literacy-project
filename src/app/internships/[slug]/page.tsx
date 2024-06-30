@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/ui/breadcrumb/breadcrumb";
-import GetNameByRoute from "@/utils/route";
+import Breadcrumb from "@/components/breadcrumb/breadcrumb";
+import { GetNameByRoute } from "@/utils/route";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const routeName = GetNameByRoute(params.slug);
