@@ -99,7 +99,7 @@
   }
 
   .timeline .timeline-item {
-    @apply relative border-l-2 border-denim-600 px-6 pb-6;
+    @apply relative border-l-2 border-denim-600 px-6 pb-6 lg:px-8 lg:pb-8;
     @apply flex flex-col gap-2;
   }
   .timeline .timeline-item {

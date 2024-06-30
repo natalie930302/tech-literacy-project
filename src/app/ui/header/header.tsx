@@ -27,7 +27,7 @@ export default function Header() {
                   />
                 </Link>
               </div>
-              <ul className="hidden lg:flex items-center gap-6">
+              <ul className="hidden md:flex items-center gap-6">
                 <li className="group">
                   <Link
                     href="/"
@@ -38,7 +38,7 @@ export default function Header() {
                 </li>
                 <li className="group">
                   <Link
-                    href="/"
+                    href="/about"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
                     關於計畫
@@ -46,7 +46,7 @@ export default function Header() {
                 </li>
                 <li className="group">
                   <Link
-                    href="/"
+                    href="/courses"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
                     師培/專業課程
@@ -54,7 +54,7 @@ export default function Header() {
                 </li>
                 <li className="group">
                   <Link
-                    href="/"
+                    href="/expertise"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
                     科技領域專長
@@ -62,7 +62,7 @@ export default function Header() {
                 </li>
                 <li className="group">
                   <Link
-                    href="/"
+                    href="/internships"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
                     實習資源
@@ -72,7 +72,7 @@ export default function Header() {
             </div>
             <button
               onClick={toggleMenu}
-              className="flex lg:hidden items-center"
+              className="flex md:hidden items-center"
             >
               <IconX className="scale-0 size-0 group-[&.active]/header:scale-100 group-[&.active]/header:size-auto" />
               <IconMenu2 className="scale-100 size-auto group-[&.active]/header:scale-0 group-[&.active]/header:size-0" />
@@ -80,7 +80,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <nav className="fixed z-40 top-16 left-0 -translate-y-full group-[&.active]/header:translate-y-0 lg:!-translate-y-full w-full bg-gray-50 shadow-lg">
+      <nav className="fixed z-40 top-16 left-0 -translate-y-full group-[&.active]/header:translate-y-0 md:!-translate-y-full w-full bg-gray-50 shadow-lg">
         <div className="container py-6">
           <ul className="flex flex-col gap-4">
             <li className="group">
@@ -93,7 +93,7 @@ export default function Header() {
             </li>
             <li className="group">
               <Link
-                href="/"
+                href="/about"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
                 關於計畫
@@ -101,7 +101,7 @@ export default function Header() {
             </li>
             <li className="group">
               <Link
-                href="/"
+                href="/courses"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
                 師培/專業課程
@@ -109,7 +109,7 @@ export default function Header() {
             </li>
             <li className="group">
               <Link
-                href="/"
+                href="/expertise"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
                 科技領域專長
@@ -117,7 +117,7 @@ export default function Header() {
             </li>
             <li className="group">
               <Link
-                href="/"
+                href="/internships"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
                 實習資源

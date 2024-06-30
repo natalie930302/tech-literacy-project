@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -84,8 +83,8 @@ const config: Config = {
           sm: "1rem",
           DEFAULT: "1rem",
           lg: "3rem",
-          xl: "4rem",
-          "2xl": "5rem",
+          xl: "5rem",
+          "2xl": "8rem",
         },
       },
       strokeWidth: {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/style/globals.css";
 
-import Header from "@/header";
-import Footer from "@/footer/footer";
-import ScrollToTop from "@/scroll-to-top";
+import Header from "@/ui/header/header";
+import Footer from "@/ui/footer/footer";
+import ScrollToTop from "@/ui/scroll-to-top/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "提升科技素養與優化教育實習之科技領域次專長師資培育",
