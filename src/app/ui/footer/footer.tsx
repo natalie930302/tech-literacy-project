@@ -1,14 +1,9 @@
 // "use client";
 
 import Link from "next/link";
-import {
-  IconExternalLink,
-  IconBrandInstagram,
-  IconBrandFacebook,
-  IconBrandNotion,
-} from "@tabler/icons-react";
+import { IconBrandInstagram, IconBrandFacebook } from "@tabler/icons-react";
 
-const Footer = () => {
+export default function Footer() {
   //   const handleSubmit = async (e) => {
   //     e.preventDefault();
 
@@ -41,25 +36,25 @@ const Footer = () => {
   return (
     <footer className="bg-[url('/images/NTUE.png')] bg-no-repeat bg-cover bg-center">
       <div className="backdrop-blur-sm backdrop-brightness-50 backdrop-contrast-50">
-        <div className="container pt-8 pb-4">
+        <div className="container py-8 pb-4">
           <h3 className="text-2xl font-semibold text-white mb-6">聯繫我們</h3>
           <div className="grid grid-cols-12 gap-6 mb-6">
             <div className="col-span-12 md:col-span-6">
-              <div className="text-sm text-gray-100 mb-6">
+              <div className="text-sm text-gray-600 mb-6">
                 <div className="flex items-center gap-3">
                   <Link
                     className="flex justify-center items-center size-10 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full group"
                     href="#"
                     target="_blank"
                   >
-                    <IconBrandInstagram className="size-6 text-gray-800 group-hover:*:text-denim-600" />
+                    <IconBrandInstagram className="size-6 group-hover:*:text-denim-600" />
                   </Link>
                   <Link
                     className="flex justify-center items-center size-10 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full group"
                     href="#"
                     target="_blank"
                   >
-                    <IconBrandFacebook className="size-6 text-gray-800 group-hover:*:text-denim-600" />
+                    <IconBrandFacebook className="size-6 group-hover:*:text-denim-600" />
                   </Link>
                 </div>
               </div>
@@ -91,7 +86,7 @@ const Footer = () => {
                     id="email"
                     type="email"
                     placeholder="請輸入電子郵件..."
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
                     required
                   />
                 </div>
@@ -102,7 +97,7 @@ const Footer = () => {
                   <textarea
                     id="message"
                     placeholder="請輸入留言..."
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
                     required
                   ></textarea>
                 </div>
@@ -143,6 +138,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

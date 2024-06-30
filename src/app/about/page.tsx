@@ -342,13 +342,13 @@ export default function Page() {
   return (
     <main>
       <section>
-        <div className="container py-16">
+        <div className="container py-8 md:py-16 pb-4 md:pb-8">
           <h1 className="font-semibold text-4xl text-center">關於計畫</h1>
           <Breadcrumb />
         </div>
       </section>
-      <section className="bg-gray-200">
-        <div className="container py-16">
+      <section className="bg-gray-200/50">
+        <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">
               計畫背景與概述
@@ -369,7 +369,7 @@ export default function Page() {
         </div>
       </section>
       <section>
-        <div className="container py-16">
+        <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">計畫架構地圖</h2>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
@@ -414,7 +414,7 @@ export default function Page() {
         </div>
       </section>
       <section className="bg-denim-100">
-        <div className="container py-16">
+        <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-3xl text-center">計畫執行</h2>
             <div className="timeline grid grid-cols-1 md:grid-cols-2">
@@ -444,7 +444,7 @@ const IntroCard: React.FC<IntroCardProps> = ({
   title,
   description,
 }) => (
-  <div className="p-6 group">
+  <div className="p-4 md:p-6 group">
     <div className="flex flex-col justify-center items-center gap-4">
       <Image
         src={image_url}

@@ -10,7 +10,7 @@
     scroll-behavior: smooth !important;
   }
   body {
-    @apply bg-gray-100 overflow-x-hidden;
+    @apply bg-gray-50 text-gray-900 text-justify overflow-x-hidden;
   }
   main {
     @apply pt-16;
@@ -110,7 +110,7 @@
     @apply font-semibold text-xl text-denim-600;
   }
   .timeline .timeline-item .time {
-    @apply w-fit text-xs text-gray-600;
+    @apply w-fit text-sm text-gray-500;
   }
   .timeline .timeline-item::before {
     @apply content-[''] absolute top-0 -left-[10px] size-[16px] !rounded-full bg-denim-500;
