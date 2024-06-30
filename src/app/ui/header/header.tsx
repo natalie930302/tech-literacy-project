@@ -133,7 +133,7 @@ export default function Header() {
         </div>
       </nav>
       <div
-        className="backdrop opacity-0 group-[&.active]/header:opacity-100 scale-0 group-[&.active]/header:scale-100 transition-show group-[&.active]/header:transition-hide"
+        className="backdrop opacity-0 md:!opacity-0 group-[&.active]/header:opacity-100 scale-0 md:!scale-0 group-[&.active]/header:scale-100 transition-show group-[&.active]/header:transition-hide"
         onClick={closeMenu}
       />
     </header>
