@@ -93,11 +93,11 @@ export default function Page() {
           subnodes: [
             {
               title: "次專長加註辦法",
-              href: "/expertise/minor-specialization-guidelines",
+              href: "/expertise#minor-specialization-guidelines",
             },
             {
               title: "科技領域微學程",
-              href: "/expertise/micro-programs-in-technology",
+              href: "/expertise#micro-programs-in-technology",
             },
           ],
         },
@@ -343,14 +343,16 @@ export default function Page() {
     <main>
       <section>
         <div className="container py-8 md:py-16 pb-4 md:pb-8">
-          <h1 className="font-semibold text-4xl text-center">關於計畫</h1>
+          <h1 className="font-semibold text-3xl md:text-4xl text-center">
+            關於計畫
+          </h1>
           <Breadcrumb />
         </div>
       </section>
-      <section className="bg-gray-200/50">
+      <section className="bg-gray-200/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
-            <h2 className="font-semibold text-3xl text-center">
+            <h2 className="font-semibold text-2xl md:text-3xl text-center">
               計畫背景與概述
             </h2>
             <div className="flex flex-col gap-4">
@@ -371,7 +373,9 @@ export default function Page() {
       <section>
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
-            <h2 className="font-semibold text-3xl text-center">計畫架構地圖</h2>
+            <h2 className="font-semibold text-2xl md:text-3xl text-center">
+              計畫架構地圖
+            </h2>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 w-fit m-auto">
               {mindMapData.map((data, index) => (
                 <MindMapCard
@@ -413,10 +417,12 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="bg-denim-100">
+      <section className="bg-denim-100/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
-            <h2 className="font-semibold text-3xl text-center">計畫執行</h2>
+            <h2 className="font-semibold text-2xl md:text-3xl text-center">
+              計畫執行
+            </h2>
             <div className="timeline grid grid-cols-1 md:grid-cols-2">
               {timelineData.map((item, index) => (
                 <TimelineItem

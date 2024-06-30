@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <section>
         <div className="container py-8 md:py-16">
-          <h1 className="font-semibold text-4xl">
+          <h1 className="font-semibold text-3xl md:text-4xl">
             提升科技素養與優化教育實習之科技領域次專長師資培育
           </h1>
         </div>

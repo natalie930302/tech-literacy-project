@@ -14,7 +14,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     <main>
       <section>
         <div className="container py-8 md:py-16 pb-4 md:pb-8">
-          <h1 className="font-semibold text-4xl text-center">{routeName}</h1>
+          <h1 className="font-semibold text-3xl md:text-4xl text-center">
+            {routeName}
+          </h1>
           <Breadcrumb />
         </div>
       </section>
