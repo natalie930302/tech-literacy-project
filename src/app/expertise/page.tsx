@@ -139,7 +139,7 @@ export default function Page() {
           <Breadcrumb />
         </div>
       </section>
-      <section className="relative bg-denim-900">
+      <section className="relative bg-denim-800">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
@@ -150,7 +150,7 @@ export default function Page() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               <div className="col-span-2 flex flex-col lg:flex-row">
-                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-800 before:border-2 before:border-gray-50 before:rounded-full">
                   <div className="flex flex-col justify-between gap-2 h-full">
                     <div className="flex flex-col gap-2">
                       <p className="text-denim-200">2024.05.06 14:30</p>
@@ -164,13 +164,13 @@ export default function Page() {
                     </div>
                     <Link
                       href="#"
-                      className="text-end text-denim-500 underline"
+                      className="text-end text-denim-400 hover:text-denim-200 underline"
                     >
                       瞭解詳情
                     </Link>
                   </div>
                 </div>
-                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-800 before:border-2 before:border-gray-50 before:rounded-full">
                   <div className="flex flex-col justify-between gap-2 h-full">
                     <div className="flex flex-col gap-2">
                       <p className="text-denim-200">2024.05.06 14:30</p>
@@ -183,13 +183,13 @@ export default function Page() {
                     </div>
                     <Link
                       href="#"
-                      className="text-end text-denim-500 underline"
+                      className="text-end text-denim-400 hover:text-denim-200 underline"
                     >
                       瞭解詳情
                     </Link>
                   </div>
                 </div>
-                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-900 before:border-2 before:border-gray-50 before:rounded-full">
+                <div className="relative min-w-[33%] border-l-2 lg:border-l-0 lg:border-t-2 border-gray-50 p-4 ml-4 lg:ml-0 lg:mt-4 before:content-[''] before:absolute before:top-0 before:left-0 before:lg:left-1/2 before:-translate-x-1/2 before:lg:-translate-y-1/2 before:block before:size-5 before:bg-denim-800 before:border-2 before:border-gray-50 before:rounded-full">
                   <div className="flex flex-col justify-between gap-2 h-full">
                     <div className="flex flex-col gap-2">
                       <p className="text-denim-200">2024.05.06 14:30</p>
@@ -202,7 +202,7 @@ export default function Page() {
                     </div>
                     <Link
                       href="#"
-                      className="text-end text-denim-500 underline"
+                      className="text-end text-denim-400 hover:text-denim-200 underline"
                     >
                       瞭解詳情
                     </Link>
