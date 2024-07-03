@@ -27,18 +27,18 @@
   .transition-show {
     -webkit-transition: width 0ms ease-in-out 500ms,
       height 0ms ease-in-out 500ms, visibility 0ms ease-in-out,
-      opacity 500ms ease-in-out, -webkit-backdrop-filter 500ms;
+      opacity 500ms ease-in-out, -webkit-backdrop-filter 500ms ease-in-out;
     transition: width 0ms ease-in-out 500ms, height 0ms ease-in-out 500ms,
       visibility 0ms ease-in-out, opacity 500ms ease-in-out,
-      backdrop-filter 500ms;
+      backdrop-filter 500ms ease-in-out;
   }
   .transition-hide {
     -webkit-transition: width 0ms ease-in-out, height 0ms ease-in-out,
       visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
-      -webkit-backdrop-filter 500ms;
+      -webkit-backdrop-filter 500ms ease-in-out;
     transition: width 0ms ease-in-out, height 0ms ease-in-out,
       visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
-      backdrop-filter 500ms;
+      backdrop-filter 500ms ease-in-out;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
