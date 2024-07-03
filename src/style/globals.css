@@ -22,15 +22,17 @@
     @apply mx-auto px-4;
   }
   .backdrop {
-    @apply top-0 left-0 fixed z-30 w-full h-full backdrop-brightness-50;
+    @apply top-0 left-0 fixed z-30 size-full backdrop-brightness-50;
   }
   .transition-show {
     transition: width 0ms ease-in-out 500ms, height 0ms ease-in-out 500ms,
-      visibility 0ms ease-in-out, opacity 500ms ease-in-out;
+      visibility 0ms ease-in-out, opacity 500ms ease-in-out,
+      backdrop-filter 500ms;
   }
   .transition-hide {
     transition: width 0ms ease-in-out, height 0ms ease-in-out,
-      visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out;
+      visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
+      backdrop-filter 500ms;
   }
 }
 
