@@ -25,28 +25,14 @@
     @apply top-0 left-0 fixed z-30 size-full backdrop-brightness-50;
   }
   .transition-show {
-    -webkit-transition: width 0ms ease-in-out 500ms,
-      height 0ms ease-in-out 500ms, visibility 0ms ease-in-out,
-      opacity 500ms ease-in-out, -webkit-backdrop-filter 500ms ease-in-out;
     transition: width 0ms ease-in-out 500ms, height 0ms ease-in-out 500ms,
       visibility 0ms ease-in-out, opacity 500ms ease-in-out,
-      backdrop-filter 500ms ease-in-out;
+      backdrop-filter 500ms;
   }
   .transition-hide {
-    -webkit-transition: width 0ms ease-in-out, height 0ms ease-in-out,
-      visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
-      -webkit-backdrop-filter 500ms ease-in-out;
     transition: width 0ms ease-in-out, height 0ms ease-in-out,
       visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
-      backdrop-filter 500ms ease-in-out;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+      backdrop-filter 500ms;
   }
 }
 

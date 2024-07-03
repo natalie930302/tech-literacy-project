@@ -133,7 +133,7 @@ export default function Header() {
         </div>
       </nav>
       <div
-        className="backdrop backdrop-brightness-100 group-[&.active]/header:backdrop-brightness-50 size-0 md:!size-0 group-[&.active]/header:size-full transition-show group-[&.active]/header:transition-hide"
+        className="backdrop backdrop-brightness-100 group-[&.active]/header:backdrop-brightness-50 size-[-1px] md:!size-[-1px] group-[&.active]/header:size-full transition-show group-[&.active]/header:transition-hide"
         onClick={closeMenu}
       />
     </header>
