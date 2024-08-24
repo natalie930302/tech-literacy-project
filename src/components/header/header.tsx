@@ -33,7 +33,7 @@ export default function Header() {
                   />
                 </Link>
               </div>
-              <ul className="hidden md:flex items-center gap-6">
+              <ul className="hidden md:flex items-center gap-4">
                 <li className="group">
                   <Link
                     href="/"
@@ -71,7 +71,7 @@ export default function Header() {
                     href="/internships"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
-                    實習資源
+                    夥伴聯盟
                   </Link>
                 </li>
               </ul>
@@ -126,7 +126,7 @@ export default function Header() {
                 href="/internships"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
-                實習資源
+                夥伴聯盟
               </Link>
             </li>
           </ul>

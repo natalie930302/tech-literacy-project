@@ -10,29 +10,27 @@
     scroll-behavior: smooth !important;
   }
   body {
-    @apply bg-gray-50 text-gray-700 text-justify overflow-x-hidden;
+    @apply bg-gray-50 text-gray-800 text-justify overflow-x-hidden;
   }
   main {
-    @apply pt-16;
+    @apply pt-16 animate-in slide-in-from-top-20 fade-in duration-1000;
   }
   * {
     @apply !leading-normal transition-all duration-500;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
   .container {
     @apply mx-auto px-4;
   }
   .backdrop {
     @apply top-0 left-0 fixed z-30 size-full backdrop-brightness-50;
-  }
-  .transition-show {
-    transition: width 0ms ease-in-out 500ms, height 0ms ease-in-out 500ms,
-      visibility 0ms ease-in-out, opacity 500ms ease-in-out,
-      backdrop-filter 500ms;
-  }
-  .transition-hide {
-    transition: width 0ms ease-in-out, height 0ms ease-in-out,
-      visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
-      backdrop-filter 500ms;
   }
 }
 
@@ -144,5 +142,15 @@
       0 -4px 16px -8px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  .transition-show {
+    transition: width 0ms ease-in-out 500ms, height 0ms ease-in-out 500ms,
+      visibility 0ms ease-in-out, opacity 500ms ease-in-out,
+      backdrop-filter 500ms !important;
+  }
+  .transition-hide {
+    transition: width 0ms ease-in-out, height 0ms ease-in-out,
+      visibility 0ms ease-in-out 500ms, opacity 500ms ease-in-out,
+      backdrop-filter 500ms !important;
   }
 }

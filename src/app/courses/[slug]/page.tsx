@@ -10,7 +10,6 @@ interface CourseTabs {
   課程大綱: string;
   評量方式: string;
   參考資料: string;
-  課堂花絮: string;
 }
 
 const courseTabs: CourseTabs = {
@@ -19,7 +18,6 @@ const courseTabs: CourseTabs = {
     "課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容課程大綱內容",
   評量方式: "評量方式內容",
   參考資料: "參考資料內容",
-  課堂花絮: "課堂花絮內容",
 };
 
 const courseData = {
@@ -28,7 +26,7 @@ const courseData = {
     "授課老師：xxx老師<br/>授課時間：每周二 05 - 06 節<br/>開課學期：112 學年 第二學期",
   課程說明:
     "科目名稱：資訊安全與倫理<br/>科目英文名稱：Information Security and Ethics<br/>開課年級：大四上<br/>學分數：3<br/>必(選)修別：選修",
-  其他資訊:
+  課堂花絮:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto molestias libero doloremque harum fuga dignissimos repellendus, ex cum beatae repudiandae, a quidem culpa laboriosam minima dolorem, nihil molestiae nam. Nobis.",
 };
 
@@ -45,7 +43,7 @@ const TabContainer: React.FC<TabContainerProps> = ({ tabs, contents }) => {
 
   return (
     <div className="tab-container w-full">
-      <ul className="tab-list flex w-full overflow-x-auto no-scrollbar border-b mt-4">
+      <ul className="tab-list flex w-full overflow-x-auto border-b mt-4">
         {tabs.map((tab, index) => (
           <li
             key={index}
@@ -126,8 +124,8 @@ export default function Page({ params }: PageProps) {
                     content={courseData["課程說明"]}
                   />
                   <InfoSection
-                    title="其他資訊"
-                    content={courseData["其他資訊"]}
+                    title="課堂花絮"
+                    content={courseData["課堂花絮"]}
                   />
                 </div>
               </div>
@@ -144,8 +142,8 @@ export default function Page({ params }: PageProps) {
                   content={courseData["課程說明"]}
                 />
                 <InfoSection
-                  title="其他資訊"
-                  content={courseData["其他資訊"]}
+                  title="課堂花絮"
+                  content={courseData["課堂花絮"]}
                 />
               </div>
             </div>

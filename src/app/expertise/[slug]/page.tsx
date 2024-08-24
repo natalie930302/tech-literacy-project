@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import { GetNameByRoute } from "@/utils/route";
