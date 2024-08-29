@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import Image from "next/image";
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";

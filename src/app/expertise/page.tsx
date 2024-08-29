@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { IconFileText } from "@tabler/icons-react";
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";

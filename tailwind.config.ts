@@ -9,7 +9,7 @@ const config: Config = {
   safelist: [
     {
       pattern: /^bg-.*/,
-      variants: ["hover", "focus", "active", "group-hover", "[&_.btn]:"],
+      variants: ["hover", "focus", "active", "group-hover", "[&_.btn]"],
     },
     { pattern: /^text-.*/ },
     { pattern: /^(p|m)(x|y|t|r|b|l)-.*/ },
