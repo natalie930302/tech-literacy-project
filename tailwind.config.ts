@@ -7,16 +7,23 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    { pattern: /^bg-.*/ }, // 匹配所有以 bg- 開頭的類別
-    { pattern: /^text-.*/ }, // 匹配所有以 text- 開頭的類別
-    { pattern: /^(p|m)(x|y|t|r|b|l)-.*/ }, // 匹配所有以 p- 或 m- 開頭的類別
-    { pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)$/ }, // 匹配特定字體大小的類別
+    {
+      pattern: /^bg-.*/,
+      variants: ["hover", "focus", "active", "group-hover", "[&_.btn]:"],
+    },
+    { pattern: /^text-.*/ },
+    { pattern: /^(p|m)(x|y|t|r|b|l)-.*/ },
+    { pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)$/ },
     {
       pattern:
         /^font-(thin|extralight|light|normal|medium|semibold|bold|extrabold|black)$/,
-    }, // 匹配特定字體粗細的類別
-    { pattern: /^list-.*/ }, // 匹配所有以 list- 開頭的類別
-    "underline", // 單獨列出來的類別名稱
+    },
+    { pattern: /^list-.*/ },
+    { pattern: /^stroke-.*/ },
+    { pattern: /^fill-.*/ },
+    { pattern: /^border-.*/ },
+    { pattern: /^shadow-.*/ },
+    "underline",
   ],
   theme: {
     listStyleType: {
