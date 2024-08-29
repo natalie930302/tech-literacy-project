@@ -3,8 +3,8 @@ import { IconHandClick } from "@tabler/icons-react";
 
 interface MindMapNode {
   title: string;
-  href?: string;
-  subnodes?: MindMapNode[];
+  link?: string;
+  items?: MindMapNode[];
 }
 interface RecursiveMindMapNodeProps {
   node: MindMapNode;
@@ -19,19 +19,19 @@ const RecursiveMindMapNode: React.FC<RecursiveMindMapNodeProps> = ({
   }
   return (
     <li className="children-item">
-      {node.href ? (
-        <Link href={node.href || ""} className="btn flex items-center gap-1">
-          <div dangerouslySetInnerHTML={{ __html: node.title || "" }} />
+      {node.link ? (
+        <Link href={node.link} className="btn flex items-center gap-1">
+          <div dangerouslySetInnerHTML={{ __html: node.title }} />
           <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
         </Link>
       ) : (
         <div className="btn shrink-0">
-          <div dangerouslySetInnerHTML={{ __html: node.title || "" }} />
+          <div dangerouslySetInnerHTML={{ __html: node.title }} />
         </div>
       )}
-      {node.subnodes && (
+      {node.items && node.items.length > 0 && (
         <ol className="children">
-          {node.subnodes.map((subnode, idx) => (
+          {node.items.map((subnode, idx) => (
             <RecursiveMindMapNode key={idx} node={subnode} depth={depth + 1} />
           ))}
         </ol>
@@ -41,33 +41,33 @@ const RecursiveMindMapNode: React.FC<RecursiveMindMapNodeProps> = ({
 };
 interface MindMapCardProps {
   title: string;
-  href?: string;
-  nodes: MindMapNode[];
+  link?: string;
+  items: MindMapNode[];
   bgClass: string;
   shadowClass: string;
 }
 const MindMapCard: React.FC<MindMapCardProps> = ({
   title,
-  href,
-  nodes,
+  link,
+  items,
   bgClass,
   shadowClass,
 }) => (
   <div
     className={`mind-map w-fit text-sm md:text-base p-0 ${bgClass} ${shadowClass}`}
   >
-    {href ? (
-      <Link href={href || ""} className="bt flex items-center gap-1">
-        <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+    {link ? (
+      <Link href={link} className="bt flex items-center gap-1">
+        <div dangerouslySetInnerHTML={{ __html: title }} />
         <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
       </Link>
     ) : (
       <div className="btn shrink-0">
-        <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+        <div dangerouslySetInnerHTML={{ __html: title }} />
       </div>
     )}
     <ol className="children">
-      {nodes.map((node, index) => (
+      {items.map((node, index) => (
         <RecursiveMindMapNode key={index} node={node} depth={0} />
       ))}
     </ol>

@@ -68,7 +68,7 @@ export default function Header() {
                 </li>
                 <li className="group">
                   <Link
-                    href="/internships"
+                    href="/partner"
                     className="border-b-2 border-transparent px-3 py-1.5 group-hover:border-denim-400"
                   >
                     夥伴聯盟
@@ -77,6 +77,7 @@ export default function Header() {
               </ul>
             </div>
             <button
+              title="Toggle Menu"
               onClick={toggleMenu}
               className="flex md:hidden items-center"
             >
@@ -123,7 +124,7 @@ export default function Header() {
             </li>
             <li className="group">
               <Link
-                href="/internships"
+                href="/partner"
                 className="border-b-2 border-transparent pr-3 py-1.5 group-hover:border-denim-400"
               >
                 夥伴聯盟

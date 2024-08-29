@@ -6,6 +6,18 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    { pattern: /^bg-.*/ }, // 匹配所有以 bg- 開頭的類別
+    { pattern: /^text-.*/ }, // 匹配所有以 text- 開頭的類別
+    { pattern: /^(p|m)(x|y|t|r|b|l)-.*/ }, // 匹配所有以 p- 或 m- 開頭的類別
+    { pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)$/ }, // 匹配特定字體大小的類別
+    {
+      pattern:
+        /^font-(thin|extralight|light|normal|medium|semibold|bold|extrabold|black)$/,
+    }, // 匹配特定字體粗細的類別
+    { pattern: /^list-.*/ }, // 匹配所有以 list- 開頭的類別
+    "underline", // 單獨列出來的類別名稱
+  ],
   theme: {
     listStyleType: {
       none: "none",
@@ -80,9 +92,10 @@ const config: Config = {
       },
       container: {
         padding: {
-          sm: "1rem",
-          DEFAULT: "1rem",
-          lg: "3rem",
+          DEFAULT: "2rem",
+          sm: "2rem",
+          md: "2rem",
+          lg: "4rem",
           xl: "5rem",
           "2xl": "8rem",
         },
@@ -101,4 +114,5 @@ const config: Config = {
   },
   plugins: [require("tailwindcss-animate")],
 };
+
 export default config;

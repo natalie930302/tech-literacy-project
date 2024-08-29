@@ -29,6 +29,7 @@ const ScrollToTop = () => {
   return (
     <div className={`fixed ${isVisible ? "bottom-8" : "-bottom-20"} right-6`}>
       <button
+        title="Back to top"
         onClick={scrollToTop}
         className="flex justify-center items-center size-10 bg-denim-500 hover:bg-denim-700 text-white rounded-full"
       >

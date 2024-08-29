@@ -1,3 +1,5 @@
+import { act } from "react";
+
 const RouteNames: { [key: string]: string } = {
   home: "首頁",
   about: "關於計畫",
@@ -7,9 +9,10 @@ const RouteNames: { [key: string]: string } = {
   "introduction-to-technology-education": "科技教育概論",
   "creative-and-design-projects": "創意與設計專題",
   expertise: "科技領域專長",
+  activity: "活動資訊",
   "specialization-program-orientation": "專長加註學程說明會",
   "technology-workshops-and-seminars": "科技領域研習講座",
-  internships: "夥伴聯盟",
+  partner: "夥伴聯盟",
   "regional-technology-centers": "區域科技中心",
   "domestic-internship-schools": "國小實習學校",
   "children-and-diverse-activities": "見習與參訪活動",
