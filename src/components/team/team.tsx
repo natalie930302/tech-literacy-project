@@ -16,13 +16,13 @@ const TeamItem: React.FC<TeamItemProps> = ({
   image,
 }) => {
   return (
-    <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl group max-w-48 m-auto">
+    <div className="relative size-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl group max-w-48 m-auto">
       <Image
         src={image.url}
         alt={image.name}
         width={500}
         height={500}
-        className="w-full aspect-square object-cover object-center m-auto"
+        className="size-full aspect-square object-cover object-center bg-gray-400 m-auto"
       />
       <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full bg-denim-500/50 transition-show group-hover:transition-hide">
         <div className="flex flex-col justify-end gap-1 size-full p-4">
