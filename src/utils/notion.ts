@@ -45,9 +45,17 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
       switch (type) {
         case "Article":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
-            description: data.Description?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            description:
+              data.Description?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             image: data.Image?.files.map((file: any) => ({
               name: file.name || "",
               url: file.file.url || "",
@@ -55,8 +63,13 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
           };
         case "Announcement":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             image: data.Image?.files.map((file: any) => ({
               name: file.name || "",
               url: file.file.url || "",
@@ -66,21 +79,41 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
           };
         case "AnnouncementItem":
           return {
-            title: data.Title?.title[0]?.text.content || "",
-            description: data.Description?.rich_text[0]?.text.content || "",
-            link: data.Link?.rich_text[0]?.text.content || "",
+            title:
+              data.Title?.title
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            description:
+              data.Description?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            link:
+              data.Link?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
           };
         case "IntroCard":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             items:
               (await extractRelationIds(data.Items, "IntroCardItem")) || [],
           };
         case "IntroCardItem":
           return {
-            title: data.Title?.title[0]?.text.content || "",
-            description: data.Description?.rich_text[0]?.text.content || "",
+            title:
+              data.Title?.title
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            description:
+              data.Description?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             image: {
               name: data.Image?.files[0]?.name || "",
               url: data.Image?.files[0]?.file.url || "",
@@ -88,16 +121,29 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
           };
         case "MeetTheTeam":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             items:
               (await extractRelationIds(data.Items, "MeetTheTeamItem")) || [],
           };
         case "MeetTheTeamItem":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
-            description: data.Description?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            description:
+              data.Description?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             image: {
               name: data.Image?.files[0]?.name || "",
               url: data.Image?.files[0]?.file.url || "",
@@ -105,29 +151,54 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
           };
         case "MindMap":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             items: (await extractRelationIds(data.Items, "MindMapItem")) || [],
           };
         case "MindMapItem":
           return {
-            title: data.Title?.title[0]?.text.content || "",
-            link: data.Link?.rich_text[0]?.text.content || "",
+            title:
+              data.Title?.title
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            link:
+              data.Link?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             items:
               (await extractRelationIds(data["Sub-item"], "MindMapItem")) || [],
-            bgClass: data.BgClass?.rich_text[0]?.text.content || "",
-            shadowClass: data.ShadowClass?.rich_text[0]?.text.content || "",
+            bgClass:
+              data.BgClass?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            shadowClass:
+              data.ShadowClass?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
           };
         case "QuickLinkCard":
           return {
-            name: data.Name?.title[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
             items:
               (await extractRelationIds(data.Items, "QuickLinkCardItem")) || [],
           };
         case "QuickLinkCardItem":
           return {
-            title: data.Title?.title[0]?.text.content || "",
-            link: data.Link?.rich_text[0]?.text.content || "",
+            title:
+              data.Title?.title
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            link:
+              data.Link?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             image: {
               name: data.Image?.files[0]?.name || "",
               url: data.Image?.files[0]?.file.url || "",
@@ -135,15 +206,29 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
           };
         case "Timeline":
           return {
-            name: data.Name?.title[0]?.text.content || "",
-            title: data.Title?.rich_text[0]?.text.content || "",
+            name:
+              data.Name?.title.map((item: any) => item.text.content).join("") ||
+              "",
+            title:
+              data.Title?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
             items: (await extractRelationIds(data.Items, "TimelineItem")) || [],
           };
         case "TimelineItem":
           return {
-            title: data.Title?.title[0]?.text.content || "",
-            description: data.Description?.rich_text[0]?.text.content || "",
-            duration: data.Duration?.rich_text[0]?.text.content || "",
+            title:
+              data.Title?.title
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            description:
+              data.Description?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
+            duration:
+              data.Duration?.rich_text
+                .map((item: any) => item.text.content)
+                .join("") || "",
           };
         default:
           return data;
@@ -218,7 +303,10 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 
     return {
       Route: routePath,
-      PageName: data.properties.PageName?.rich_text[0]?.text.content || "",
+      PageName:
+        data.properties.PageName?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
       Article,
       Announcement,
       IntroCard,
@@ -240,22 +328,46 @@ const findCourseData = async (courseId?: string) => {
     })) as any;
 
     const data = response.results.map((result: any) => ({
-      Name: result.properties.Name?.title[0]?.text.content || "",
-      Title: result.properties.Title?.rich_text[0]?.text.content || "",
+      Name:
+        result.properties.Name?.title
+          .map((item: any) => item.text.content)
+          .join("") || "",
+      Title:
+        result.properties.Title?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
       Credits: result.properties.Credits?.number || "",
       Type: result.properties.Type?.select?.name || "",
       Year: result.properties.Year?.select?.name || "",
       Category: result.properties.Category?.select?.name || "",
-      Notes: result.properties.Notes?.rich_text[0]?.text.content || "",
+      Notes:
+        result.properties.Notes?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
       MainImage: {
         name: result.properties.MainImage?.files[0]?.name || "",
         url: result.properties.MainImage?.files[0]?.file.url || "",
       },
-      Goals: result.properties.Goals?.rich_text[0]?.text.content || "",
-      Outline: result.properties.Outline?.rich_text[0]?.text.content || "",
+      Goals:
+        result.properties.Goals?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
+      Outline:
+        result.properties.Outline?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
       Assessment:
-        result.properties.Assessment?.rich_text[0]?.text.content || "",
-      Schedule: result.properties.Schedule?.rich_text[0]?.text.content || "",
+        result.properties.Assessment?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
+      Schedule:
+        result.properties.Schedule?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
+      References:
+        result.properties.References?.rich_text
+          .map((item: any) => item.text.content)
+          .join("") || "",
       Highlights: result.properties.Highlights?.files.map((file: any) => ({
         name: file.name || "",
         url: file.file.url || "",
