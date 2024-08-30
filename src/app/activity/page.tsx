@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 
 const Page: React.FC = () => {
