@@ -26,7 +26,7 @@ const ExpandableImage: React.FC<any> = ({ src, alt, ...rest }) => {
       >
         <button
           title="關閉"
-          className="absolute top-2 right-4 p-4 text-white"
+          className="absolute z-50 top-2 right-4 p-4 text-white"
           onClick={handleExpand}
         >
           <IconX size={32} />
