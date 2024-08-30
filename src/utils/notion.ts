@@ -227,4 +227,50 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
   }
 };
 
-export { findRouteData };
+const COURSE_DATABASE_ID = "e5c022bbbebd4822ab112a3c0a34d8c3";
+
+const findCourseData = async (courseId?: string) => {
+  try {
+    const response = (await notion.databases.query({
+      database_id: COURSE_DATABASE_ID,
+    })) as any;
+
+    const data = response.results.map((result: any) => ({
+      Name: result.properties.Name?.title[0]?.text.content || "",
+      Title: result.properties.Title?.rich_text[0]?.text.content || "",
+      Credits: result.properties.Credits?.number || "",
+      Type: result.properties.Type?.select?.name || "",
+      Year: result.properties.Year?.select?.name || "",
+      Category: result.properties.Category?.select?.name || "",
+      Notes: result.properties.Notes?.rich_text[0]?.text.content || "",
+      MainImage: {
+        name: result.properties.MainImage?.files[0]?.name || "",
+        url: result.properties.MainImage?.files[0]?.file.url || "",
+      },
+      Goals: result.properties.Goals?.rich_text[0]?.text.content || "",
+      Outline: result.properties.Outline?.rich_text[0]?.text.content || "",
+      Assessment:
+        result.properties.Assessment?.rich_text[0]?.text.content || "",
+      Schedule: result.properties.Schedule?.rich_text[0]?.text.content || "",
+      Highlights: result.properties.Highlights?.files.map((file: any) => ({
+        name: file.name || "",
+        url: file.file.url || "",
+      })),
+    }));
+
+    if (courseId) {
+      const courseIdTransformed = courseId.replace(/\s|-/g, "").toLowerCase();
+      return data.find(
+        (course: any) =>
+          course.Title.replace(/\s|-/g, "").toLowerCase() ===
+          courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
+      );
+    }
+    return data;
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
+};
+
+export { findRouteData, findCourseData };

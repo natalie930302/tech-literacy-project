@@ -11,18 +11,35 @@ const config: Config = {
       pattern: /^bg-.*/,
       variants: ["hover", "focus", "active", "group-hover", "[&_.btn]"],
     },
-    { pattern: /^text-.*/ },
-    { pattern: /^(p|m)(x|y|t|r|b|l)-.*/ },
-    { pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)$/ },
+    {
+      pattern: /^text-.*/,
+      variants: ["hover", "focus", "active", "group-hover", "[&_.btn]"],
+    },
+    {
+      pattern: /^(p|m)(x|y|t|r|b|l)-.*/,
+    },
+    {
+      pattern: /^text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)$/,
+    },
     {
       pattern:
         /^font-(thin|extralight|light|normal|medium|semibold|bold|extrabold|black)$/,
     },
-    { pattern: /^list-.*/ },
-    { pattern: /^stroke-.*/ },
-    { pattern: /^fill-.*/ },
-    { pattern: /^border-.*/ },
-    { pattern: /^shadow-.*/ },
+    {
+      pattern: /^list-.*/,
+    },
+    {
+      pattern: /^stroke-.*/,
+    },
+    {
+      pattern: /^fill-.*/,
+    },
+    {
+      pattern: /^border-.*/,
+    },
+    {
+      pattern: /^shadow-.*/,
+    },
     "underline",
   ],
   theme: {

@@ -54,7 +54,7 @@ const MindMapCard: React.FC<MindMapCardProps> = ({
   shadowClass,
 }) => (
   <div
-    className={`mind-map w-fit text-sm md:text-base p-0 ${bgClass} ${shadowClass}`}
+    className={`mind-map w-fit text-sm md:text-base p-0 m-auto ${bgClass} ${shadowClass}`}
   >
     {link ? (
       <Link href={link} className="bt flex items-center gap-1">

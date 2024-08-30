@@ -6,7 +6,12 @@ import { IconChevronRight } from "@tabler/icons-react";
 
 import { GetNameByRoute } from "@/utils/route";
 
-const Breadcrumb: React.FC = () => {
+const Breadcrumb: React.FC<{
+  givenNames?: {
+    key: number;
+    value: string;
+  }[];
+}> = ({ givenNames }) => {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((segment) => segment);
 
@@ -26,6 +31,9 @@ const Breadcrumb: React.FC = () => {
           </Link>
         </li>
         {pathSegments.map((segment, index) => {
+          const givenName = givenNames?.find(
+            (item) => item.key === index
+          )?.value;
           const href = "/" + pathSegments.slice(0, index + 1).join("/");
           return (
             <li key={index}>
@@ -36,11 +44,11 @@ const Breadcrumb: React.FC = () => {
                     href={href}
                     className="ms-1 text-sm font-medium text-gray-600 hover:text-denim-600 md:ms-2"
                   >
-                    {getBreadcrumbName(segment)}
+                    {getBreadcrumbName(segment) || givenName}
                   </Link>
                 ) : (
                   <span className="ms-1 text-sm font-medium text-gray-400 md:ms-2">
-                    {getBreadcrumbName(segment)}
+                    {getBreadcrumbName(segment) || givenName}
                   </span>
                 )}
               </div>

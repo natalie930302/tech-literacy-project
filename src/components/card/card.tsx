@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({ title, image, link }) => {
   return (
     <Link
       href={link}
-      className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl group"
+      className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl group bg-gray-50"
     >
       <div className="flex flex-col gap-4 p-6">
         <Image
