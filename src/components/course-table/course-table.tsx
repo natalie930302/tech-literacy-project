@@ -39,7 +39,7 @@ const CourseTable: React.FC = async () => {
                   <th className="py-2 px-4 border font-semibold">開課學分數</th>
                   <th className="py-2 px-4 border font-semibold">科目名稱</th>
                   <th className="py-2 px-4 border font-semibold">學分數</th>
-                  <th className="py-2 px-4 border font-semibold">必選備</th>
+                  <th className="py-2 px-4 border font-semibold">必(選)修別</th>
                   <th className="py-2 px-4 border font-semibold">備註</th>
                 </tr>
               </thead>

@@ -3,9 +3,8 @@ import pLimit from "p-limit";
 
 // Notion 客戶端初始化
 const notion = new Client({
-  auth: "secret_K9vqhq6PQAU3DQeORJlvfkLjewO705JFte468OhD37S",
+  auth: process.env.NOTION_API_KEY,
 });
-const ROUTE_DATABASE_ID = "e307409c4b0e484990cac544adc7045e";
 
 // 設置並發請求數量限制
 const limit = pLimit(100);
@@ -170,7 +169,7 @@ const extractRelationIds = async (
 const findRouteData = async (routePath: string): Promise<any | null> => {
   try {
     const response = (await notion.databases.query({
-      database_id: ROUTE_DATABASE_ID,
+      database_id: process.env.NOTION_ROUTE_DATABASE_ID || "",
     })) as any;
 
     const data = response.results.find((result: any) =>
@@ -227,12 +226,10 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
   }
 };
 
-const COURSE_DATABASE_ID = "e5c022bbbebd4822ab112a3c0a34d8c3";
-
 const findCourseData = async (courseId?: string) => {
   try {
     const response = (await notion.databases.query({
-      database_id: COURSE_DATABASE_ID,
+      database_id: process.env.NOTION_COURSE_DATABASE_ID || "",
     })) as any;
 
     const data = response.results.map((result: any) => ({
