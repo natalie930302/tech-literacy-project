@@ -8,7 +8,6 @@ const RouteNames: { [key: string]: string } = {
   "regional-technology-centers": "區域科技中心",
   "domestic-internship-schools": "國小實習學校",
   "children-and-diverse-activities": "見習與參訪活動",
-  "three-week-internship-guidance": "三週實習輔導",
 };
 
 export const GetNameByRoute = (route: string) => {

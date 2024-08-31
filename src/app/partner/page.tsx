@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 60000;
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import Card from "@/components/card/card";
@@ -29,7 +30,7 @@ const Page: React.FC = async () => {
                 key={index}
                 title={item.title}
                 link={item.link}
-                image={item.image}
+                image={item.image || { name: "", url: "" }}
               />
             ))}
           </div>

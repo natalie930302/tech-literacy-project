@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 60000;
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 

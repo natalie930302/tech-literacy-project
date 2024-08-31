@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 60000;
 
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -70,7 +71,7 @@ const Page: React.FC = async ({ params }: any) => {
         </div>
       </section>
       <section>
-        <div className="container py-8 md:py-16 pt-0 md:pt-0">
+        <div className="container py-8 md:py-16 pt-4 md:pt-4">
           <div className="grid grid-cols-1 md:grid-cols-6 md:divide-x-2">
             <div className="col-span-4 md:pr-6 lg:pr-8">
               <Image

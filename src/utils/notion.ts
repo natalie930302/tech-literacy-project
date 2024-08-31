@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import { data } from "autoprefixer";
 import pLimit from "p-limit";
 
 // Notion 客戶端初始化
@@ -11,208 +12,74 @@ const limit = pLimit(100);
 
 // 設置快取機制
 const cache: Map<string, { data: any; timestamp: number }> = new Map();
-const CACHE_TTL = 1000 * 60 * 5;
+const CACHE_TTL = 1000 * 60 * 5; // 5 分鐘
+
+// 提取 Notion 內容的工具函數
+const extractContent = (contentArray: any[], key: string): string => {
+  return contentArray?.map((item: any) => item[key].content).join("") || "";
+};
 
 // 獲取頁面細節
 const getPageDetails = async (id: string, type: string): Promise<any> => {
-  const cacheKey = `${id}`;
+  const cacheKey = id;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
   try {
-    const response = (await notion.pages.retrieve({
-      page_id: id,
-    })) as any;
+    const response = (await notion.pages.retrieve({ page_id: id })) as any;
     const data = response.properties;
 
-    const result = (async () => {
+    const result = await (async () => {
       switch (type) {
         case "Article":
           return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
+            name: extractContent(data.Name?.title, "text") || "",
+            title: extractContent(data.Title?.rich_text, "text") || "",
             description:
-              data.Description?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            image: data.Image?.files.map((file: any) => ({
-              name: file.name || "",
-              url: file.file.url || "",
-            })),
+              extractContent(data.Description?.rich_text, "text") || "",
+            image:
+              data.Image?.files.map((file: any) => ({
+                name: file.name || "",
+                url: file.file.url || "",
+              })) || [],
           };
         case "Announcement":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            image: data.Image?.files.map((file: any) => ({
-              name: file.name || "",
-              url: file.file.url || "",
-            })),
-            items:
-              (await extractRelationIds(data.Items, "AnnouncementItem")) || [],
-          };
-        case "AnnouncementItem":
-          return {
-            title:
-              data.Title?.title
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            description:
-              data.Description?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            link:
-              data.Link?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-          };
         case "IntroCard":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            items:
-              (await extractRelationIds(data.Items, "IntroCardItem")) || [],
-          };
-        case "IntroCardItem":
-          return {
-            title:
-              data.Title?.title
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            description:
-              data.Description?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            image: {
-              name: data.Image?.files[0]?.name || "",
-              url: data.Image?.files[0]?.file.url || "",
-            },
-          };
         case "MeetTheTeam":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            items:
-              (await extractRelationIds(data.Items, "MeetTheTeamItem")) || [],
-          };
-        case "MeetTheTeamItem":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            description:
-              data.Description?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            image: {
-              name: data.Image?.files[0]?.name || "",
-              url: data.Image?.files[0]?.file.url || "",
-            },
-          };
         case "MindMap":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            items: (await extractRelationIds(data.Items, "MindMapItem")) || [],
-          };
-        case "MindMapItem":
-          return {
-            title:
-              data.Title?.title
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            link:
-              data.Link?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            items:
-              (await extractRelationIds(data["Sub-item"], "MindMapItem")) || [],
-            bgClass:
-              data.BgClass?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            shadowClass:
-              data.ShadowClass?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-          };
         case "QuickLinkCard":
-          return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            items:
-              (await extractRelationIds(data.Items, "QuickLinkCardItem")) || [],
-          };
-        case "QuickLinkCardItem":
-          return {
-            title:
-              data.Title?.title
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            link:
-              data.Link?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            image: {
-              name: data.Image?.files[0]?.name || "",
-              url: data.Image?.files[0]?.file.url || "",
-            },
-          };
         case "Timeline":
           return {
-            name:
-              data.Name?.title.map((item: any) => item.text.content).join("") ||
-              "",
-            title:
-              data.Title?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            items: (await extractRelationIds(data.Items, "TimelineItem")) || [],
+            name: extractContent(data.Name?.title, "text") || "",
+            title: extractContent(data.Title?.rich_text, "text") || "",
+            image:
+              data.Image?.files.map((file: any) => ({
+                name: file.name || "",
+                url: file.file.url || "",
+              })) || [],
+            items: (await extractRelationIds(data.Items, `${type}Item`)) || [],
           };
+        case "AnnouncementItem":
+        case "IntroCardItem":
+        case "MeetTheTeamItem":
+        case "MindMapItem":
+        case "QuickLinkCardItem":
         case "TimelineItem":
           return {
-            title:
-              data.Title?.title
-                .map((item: any) => item.text.content)
-                .join("") || "",
+            title: extractContent(data.Title?.title, "text") || "",
             description:
-              data.Description?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
-            duration:
-              data.Duration?.rich_text
-                .map((item: any) => item.text.content)
-                .join("") || "",
+              extractContent(data.Description?.rich_text, "text") || "",
+            link: extractContent(data.Link?.rich_text, "text") || "",
+            image: {
+              name: data.Image?.files[0]?.name || "",
+              url: data.Image?.files[0]?.file.url || "",
+            },
+            bgClass:
+              extractContent(data.BgClass?.rich_text, "text") || undefined,
+            shadowClass:
+              extractContent(data.ShadowClass?.rich_text, "text") || undefined,
+            items:
+              (await extractRelationIds(data["Sub-item"], `${type}`)) || [],
           };
         default:
           return data;
@@ -242,7 +109,7 @@ const extractRelationIds = async (
 
 // 查找路由數據
 const findRouteData = async (routePath: string): Promise<any | null> => {
-  const cacheKey = `${routePath}`;
+  const cacheKey = routePath;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -259,48 +126,28 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 
     if (!data) return null;
 
-    const getDataPromises = {
-      Article: extractRelationIds(data.properties.Article, "Article"),
-      Announcement: extractRelationIds(
+    const result = {
+      Route: routePath,
+      PageName: extractContent(data.properties.PageName?.rich_text, "text"),
+      Article: await extractRelationIds(data.properties.Article, "Article"),
+      Announcement: await extractRelationIds(
         data.properties.Announcement,
         "Announcement"
       ),
-      IntroCard: extractRelationIds(data.properties.IntroCard, "IntroCard"),
-      MeetTheTeam: extractRelationIds(
+      IntroCard: await extractRelationIds(
+        data.properties.IntroCard,
+        "IntroCard"
+      ),
+      MeetTheTeam: await extractRelationIds(
         data.properties.MeetTheTeam,
         "MeetTheTeam"
       ),
-      MindMap: extractRelationIds(data.properties.MindMap, "MindMap"),
-      QuickLinkCard: extractRelationIds(
+      MindMap: await extractRelationIds(data.properties.MindMap, "MindMap"),
+      QuickLinkCard: await extractRelationIds(
         data.properties.QuickLinkCard,
         "QuickLinkCard"
       ),
-      Timeline: extractRelationIds(data.properties.Timeline, "Timeline"),
-    };
-
-    const [
-      Article,
-      Announcement,
-      IntroCard,
-      MeetTheTeam,
-      MindMap,
-      QuickLinkCard,
-      Timeline,
-    ] = await Promise.all(Object.values(getDataPromises));
-
-    const result = {
-      Route: routePath,
-      PageName:
-        data.properties.PageName?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      Article,
-      Announcement,
-      IntroCard,
-      MeetTheTeam,
-      MindMap,
-      QuickLinkCard,
-      Timeline,
+      Timeline: await extractRelationIds(data.properties.Timeline, "Timeline"),
     };
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
@@ -311,9 +158,9 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
   }
 };
 
-const findCourseData = async (courseId?: string) => {
+const findCourseData = async (courseId?: string): Promise<any | null> => {
   const cacheKey = courseId
-    ? `${courseId}`
+    ? courseId
     : `${process.env.NOTION_COURSE_DATABASE_ID}`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
@@ -324,46 +171,28 @@ const findCourseData = async (courseId?: string) => {
     })) as any;
 
     const data = response.results.map((result: any) => ({
-      Name:
-        result.properties.Name?.title
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      Title:
-        result.properties.Title?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
+      Name: extractContent(result.properties.Name?.title, "text"),
+      Title: extractContent(result.properties.Title?.rich_text, "text"),
       Credits: result.properties.Credits?.number || "",
       Type: result.properties.Type?.select?.name || "",
       Year: result.properties.Year?.select?.name || "",
       Category: result.properties.Category?.select?.name || "",
-      Notes:
-        result.properties.Notes?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
+      Notes: extractContent(result.properties.Notes?.rich_text, "text"),
       MainImage: {
         name: result.properties.MainImage?.files[0]?.name || "",
         url: result.properties.MainImage?.files[0]?.file.url || "",
       },
-      Goals:
-        result.properties.Goals?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      Outline:
-        result.properties.Outline?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      Assessment:
-        result.properties.Assessment?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      Schedule:
-        result.properties.Schedule?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
-      References:
-        result.properties.References?.rich_text
-          .map((item: any) => item.text.content)
-          .join("") || "",
+      Goals: extractContent(result.properties.Goals?.rich_text, "text"),
+      Outline: extractContent(result.properties.Outline?.rich_text, "text"),
+      Assessment: extractContent(
+        result.properties.Assessment?.rich_text,
+        "text"
+      ),
+      Schedule: extractContent(result.properties.Schedule?.rich_text, "text"),
+      References: extractContent(
+        result.properties.References?.rich_text,
+        "text"
+      ),
       Highlights: result.properties.Highlights?.files.map((file: any) => ({
         name: file.name || "",
         url: file.file.url || "",
@@ -376,7 +205,7 @@ const findCourseData = async (courseId?: string) => {
       data.find(
         (course: any) =>
           course.Title.replace(/\s|-/g, "").toLowerCase() ===
-          courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
+          courseIdTransformed
       ) || data;
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
@@ -387,18 +216,58 @@ const findCourseData = async (courseId?: string) => {
   }
 };
 
-const checkCache = (cacheKey: string) => {
-  const now = Date.now();
-  // 檢查快取
-  if (cache.has(cacheKey)) {
-    const cached = cache.get(cacheKey)!;
-    if (now - cached.timestamp < CACHE_TTL) {
-      return cached.data;
-    }
-    // 移除過期快取
-    cache.delete(cacheKey);
+const findPartnerData = async (partnerType: string): Promise<any | null> => {
+  const cacheKey = partnerType;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
+
+  try {
+    const response = (await notion.databases.query({
+      database_id: process.env.NOTION_PARTNER_DATABASE_ID || "",
+    })) as any;
+
+    const result = response.results
+      .map((result: any) => ({
+        title: extractContent(result.properties.Title?.title, "text"),
+        description:
+          extractContent(result.properties.Description?.rich_text, "text") ||
+          "",
+        type: result.properties.Type?.select?.name || "",
+        mainImage: {
+          name: result.properties.MainImage?.files[0]?.name || "",
+          url: result.properties.MainImage?.files[0]?.file.url || "",
+        },
+        image:
+          result.properties.Image?.files.map((file: any) => ({
+            name: file.name || "",
+            url: file.file.url || "",
+          })) || [],
+        isVisible: result.properties.IsVisible?.checkbox || false,
+      }))
+      .filter(
+        (partner: any) => partner.type === partnerType && partner.isVisible
+      );
+
+    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
+  } catch (error) {
+    console.error("Error fetching partners:", error);
+    return [];
   }
+};
+
+const checkCache = (cacheKey: string) => {
+  // const now = Date.now();
+  // // 檢查快取
+  // if (cache.has(cacheKey)) {
+  //   const cached = cache.get(cacheKey)!;
+  //   if (now - cached.timestamp < CACHE_TTL) {
+  //     return cached.data;
+  //   }
+  //   // 移除過期快取
+  //   cache.delete(cacheKey);
+  // }
   return null;
 };
 
-export { findRouteData, findCourseData };
+export { findRouteData, findCourseData, findPartnerData };
