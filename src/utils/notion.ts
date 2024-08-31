@@ -370,17 +370,14 @@ const findCourseData = async (courseId?: string) => {
       })),
     }));
 
-    const result = () => {
-      if (courseId) {
-        const courseIdTransformed = courseId.replace(/\s|-/g, "").toLowerCase();
-        return data.find(
-          (course: any) =>
-            course.Title.replace(/\s|-/g, "").toLowerCase() ===
-            courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
-        );
-      }
-      return data;
-    };
+    const courseIdTransformed =
+      courseId?.replace(/\s|-/g, "").toLowerCase() || "";
+    const result =
+      data.find(
+        (course: any) =>
+          course.Title.replace(/\s|-/g, "").toLowerCase() ===
+          courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
+      ) || data;
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
