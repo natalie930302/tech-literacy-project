@@ -1,13 +1,6 @@
 import { Client } from "@notionhq/client";
 import pLimit from "p-limit";
 
-console.log("NOTION_API_KEY:", process.env.NOTION_API_KEY);
-console.log("NOTION_ROUTE_DATABASE_ID:", process.env.NOTION_ROUTE_DATABASE_ID);
-console.log(
-  "NOTION_COURSE_DATABASE_ID:",
-  process.env.NOTION_COURSE_DATABASE_ID
-);
-
 // Notion 客戶端初始化
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
