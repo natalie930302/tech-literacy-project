@@ -15,18 +15,9 @@ const CACHE_TTL = 1000 * 60 * 5;
 
 // 獲取頁面細節
 const getPageDetails = async (id: string, type: string): Promise<any> => {
-  const cacheKey = `${id}-${type}`;
-  const now = Date.now();
-
-  // 檢查快取
-  if (cache.has(cacheKey)) {
-    const cached = cache.get(cacheKey)!;
-    if (now - cached.timestamp < CACHE_TTL) {
-      return cached.data;
-    }
-    // 移除過期快取
-    cache.delete(cacheKey);
-  }
+  const cacheKey = `${id}`;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
 
   try {
     const response = (await notion.pages.retrieve({
@@ -228,8 +219,7 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
       }
     })();
 
-    // 更新快取
-    cache.set(cacheKey, { data: result, timestamp: now });
+    cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error(`Error fetching page details for ${id}:`, error);
@@ -252,6 +242,10 @@ const extractRelationIds = async (
 
 // 查找路由數據
 const findRouteData = async (routePath: string): Promise<any | null> => {
+  const cacheKey = `${routePath}`;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
+
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_ROUTE_DATABASE_ID || "",
@@ -294,7 +288,7 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
       Timeline,
     ] = await Promise.all(Object.values(getDataPromises));
 
-    return {
+    const result = {
       Route: routePath,
       PageName:
         data.properties.PageName?.rich_text
@@ -308,6 +302,9 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
       QuickLinkCard,
       Timeline,
     };
+
+    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
   } catch (error) {
     console.error("Error fetching route data:", error);
     return null;
@@ -315,6 +312,12 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 };
 
 const findCourseData = async (courseId?: string) => {
+  const cacheKey = courseId
+    ? `${courseId}`
+    : `${process.env.NOTION_COURSE_DATABASE_ID}`;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
+
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_COURSE_DATABASE_ID || "",
@@ -367,19 +370,38 @@ const findCourseData = async (courseId?: string) => {
       })),
     }));
 
-    if (courseId) {
-      const courseIdTransformed = courseId.replace(/\s|-/g, "").toLowerCase();
-      return data.find(
-        (course: any) =>
-          course.Title.replace(/\s|-/g, "").toLowerCase() ===
-          courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
-      );
-    }
-    return data;
+    const result = () => {
+      if (courseId) {
+        const courseIdTransformed = courseId.replace(/\s|-/g, "").toLowerCase();
+        return data.find(
+          (course: any) =>
+            course.Title.replace(/\s|-/g, "").toLowerCase() ===
+            courseIdTransformed.replace(/\s|-/g, "").toLowerCase()
+        );
+      }
+      return data;
+    };
+
+    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
   } catch (error) {
     console.error("Error fetching courses:", error);
     return [];
   }
+};
+
+const checkCache = (cacheKey: string) => {
+  const now = Date.now();
+  // 檢查快取
+  if (cache.has(cacheKey)) {
+    const cached = cache.get(cacheKey)!;
+    if (now - cached.timestamp < CACHE_TTL) {
+      return cached.data;
+    }
+    // 移除過期快取
+    cache.delete(cacheKey);
+  }
+  return null;
 };
 
 export { findRouteData, findCourseData };
