@@ -257,16 +257,16 @@ const findPartnerData = async (partnerType: string): Promise<any | null> => {
 };
 
 const checkCache = (cacheKey: string) => {
-  // const now = Date.now();
-  // // 檢查快取
-  // if (cache.has(cacheKey)) {
-  //   const cached = cache.get(cacheKey)!;
-  //   if (now - cached.timestamp < CACHE_TTL) {
-  //     return cached.data;
-  //   }
-  //   // 移除過期快取
-  //   cache.delete(cacheKey);
-  // }
+  const now = Date.now();
+  // 檢查快取
+  if (cache.has(cacheKey)) {
+    const cached = cache.get(cacheKey)!;
+    if (now - cached.timestamp < CACHE_TTL) {
+      return cached.data;
+    }
+    // 移除過期快取
+    cache.delete(cacheKey);
+  }
   return null;
 };
 
