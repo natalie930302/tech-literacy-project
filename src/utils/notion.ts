@@ -15,13 +15,18 @@ const cache: Map<string, { data: any; timestamp: number }> = new Map();
 const CACHE_TTL = 1000 * 60 * 5; // 5 分鐘
 
 // 提取 Notion 內容的工具函數
-const extractContent = (contentArray: any[], key: string): string => {
-  return contentArray?.map((item: any) => item[key].content).join("") || "";
+const extractContent = (
+  contentArray: any[],
+  key: string
+): string | undefined => {
+  return (
+    contentArray?.map((item: any) => item[key].content).join("") || undefined
+  );
 };
 
 // 獲取頁面細節
 const getPageDetails = async (id: string, type: string): Promise<any> => {
-  const cacheKey = id;
+  const cacheKey = `PageDetail-${id}`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -66,20 +71,30 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
         case "QuickLinkCardItem":
         case "TimelineItem":
           return {
-            title: extractContent(data.Title?.title, "text") || "",
+            title:
+              extractContent(data.Title?.title, "text") ||
+              data.Title?.formula?.string ||
+              "",
             description:
-              extractContent(data.Description?.rich_text, "text") || "",
-            link: extractContent(data.Link?.rich_text, "text") || "",
+              extractContent(data.Description?.rich_text, "text") ||
+              data.Description?.formula?.string ||
+              "",
+            link:
+              extractContent(data.Link?.rich_text, "text") ||
+              data.Link?.formula?.string ||
+              "",
             image: {
               name: data.Image?.files[0]?.name || "",
               url: data.Image?.files[0]?.file.url || "",
             },
+            items:
+              (await extractRelationIds(data["Sub-item"], `${type}`)) || [],
             bgClass:
               extractContent(data.BgClass?.rich_text, "text") || undefined,
             shadowClass:
               extractContent(data.ShadowClass?.rich_text, "text") || undefined,
-            items:
-              (await extractRelationIds(data["Sub-item"], `${type}`)) || [],
+            position:
+              extractContent(data.Position?.rich_text, "text") || undefined,
           };
         default:
           return data;
@@ -109,7 +124,7 @@ const extractRelationIds = async (
 
 // 查找路由數據
 const findRouteData = async (routePath: string): Promise<any | null> => {
-  const cacheKey = routePath;
+  const cacheKey = `Route-${routePath}`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -128,7 +143,8 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 
     const result = {
       Route: routePath,
-      PageName: extractContent(data.properties.PageName?.rich_text, "text"),
+      PageName:
+        extractContent(data.properties.PageName?.rich_text, "text") || "",
       Article: await extractRelationIds(data.properties.Article, "Article"),
       Announcement: await extractRelationIds(
         data.properties.Announcement,
@@ -160,7 +176,7 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 
 const findCourseData = async (courseId?: string): Promise<any | null> => {
   const cacheKey = courseId
-    ? courseId
+    ? `Course-${courseId}`
     : `${process.env.NOTION_COURSE_DATABASE_ID}`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
@@ -171,28 +187,26 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
     })) as any;
 
     const data = response.results.map((result: any) => ({
-      Name: extractContent(result.properties.Name?.title, "text"),
-      Title: extractContent(result.properties.Title?.rich_text, "text"),
+      Name: extractContent(result.properties.Name?.title, "text") || "",
+      Title: extractContent(result.properties.Title?.rich_text, "text") || "",
       Credits: result.properties.Credits?.number || "",
       Type: result.properties.Type?.select?.name || "",
       Year: result.properties.Year?.select?.name || "",
       Category: result.properties.Category?.select?.name || "",
-      Notes: extractContent(result.properties.Notes?.rich_text, "text"),
+      Notes: extractContent(result.properties.Notes?.rich_text, "text") || "",
       MainImage: {
         name: result.properties.MainImage?.files[0]?.name || "",
         url: result.properties.MainImage?.files[0]?.file.url || "",
       },
-      Goals: extractContent(result.properties.Goals?.rich_text, "text"),
-      Outline: extractContent(result.properties.Outline?.rich_text, "text"),
-      Assessment: extractContent(
-        result.properties.Assessment?.rich_text,
-        "text"
-      ),
-      Schedule: extractContent(result.properties.Schedule?.rich_text, "text"),
-      References: extractContent(
-        result.properties.References?.rich_text,
-        "text"
-      ),
+      Goals: extractContent(result.properties.Goals?.rich_text, "text") || "",
+      Outline:
+        extractContent(result.properties.Outline?.rich_text, "text") || "",
+      Assessment:
+        extractContent(result.properties.Assessment?.rich_text, "text") || "",
+      Schedule:
+        extractContent(result.properties.Schedule?.rich_text, "text") || "",
+      References:
+        extractContent(result.properties.References?.rich_text, "text") || "",
       Highlights: result.properties.Highlights?.files.map((file: any) => ({
         name: file.name || "",
         url: file.file.url || "",
@@ -217,7 +231,7 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
 };
 
 const findPartnerData = async (partnerType: string): Promise<any | null> => {
-  const cacheKey = partnerType;
+  const cacheKey = `Partner-${partnerType}`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -228,7 +242,7 @@ const findPartnerData = async (partnerType: string): Promise<any | null> => {
 
     const result = response.results
       .map((result: any) => ({
-        title: extractContent(result.properties.Title?.title, "text"),
+        title: extractContent(result.properties.Title?.title, "text") || "",
         description:
           extractContent(result.properties.Description?.rich_text, "text") ||
           "",
@@ -256,6 +270,46 @@ const findPartnerData = async (partnerType: string): Promise<any | null> => {
   }
 };
 
+const findActivityData = async (activityId: string): Promise<any | null> => {
+  const cacheKey = `Activity-${activityId}`;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
+
+  try {
+    const response = (await notion.databases.query({
+      database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
+      filter: {
+        property: "ID",
+        number: {
+          equals: parseInt(activityId),
+        },
+      },
+    })) as any;
+
+    const result = {
+      title:
+        extractContent(response.results[0]?.properties.Title?.title, "text") ||
+        "",
+      description:
+        extractContent(
+          response.results[0]?.properties.Description?.rich_text,
+          "text"
+        ) || "",
+      image:
+        response.results[0]?.properties.Image?.files.map((file: any) => ({
+          name: file.name || "",
+          url: file.file.url || "",
+        })) || [],
+    };
+
+    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
+  } catch (error) {
+    console.error("Error fetching activities:", error);
+    return [];
+  }
+};
+
 const checkCache = (cacheKey: string) => {
   const now = Date.now();
   // 檢查快取
@@ -270,4 +324,4 @@ const checkCache = (cacheKey: string) => {
   return null;
 };
 
-export { findRouteData, findCourseData, findPartnerData };
+export { findRouteData, findCourseData, findPartnerData, findActivityData };

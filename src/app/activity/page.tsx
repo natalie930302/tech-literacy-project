@@ -2,8 +2,16 @@ export const dynamic = "force-dynamic";
 export const revalidate = 60000;
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
+import Announcement from "@/components/announcement/announcement";
 
-const Page: React.FC = () => {
+import { findRouteData } from "@/utils/notion";
+
+const Page: React.FC = async () => {
+  const data = await findRouteData("/activity");
+  const ActivityAnnouncement = data.Announcement.find(
+    ({ name }: any) => name === "ActivityAnnouncement"
+  );
+
   return (
     <main>
       <section>
@@ -14,6 +22,7 @@ const Page: React.FC = () => {
           <Breadcrumb />
         </div>
       </section>
+      <Announcement items={ActivityAnnouncement.items} />
     </main>
   );
 };

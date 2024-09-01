@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 interface TeamItemProps {
-  name: string;
   title: string;
+  position: string;
   description: string;
   image: {
     url: string;
@@ -10,8 +10,8 @@ interface TeamItemProps {
   };
 }
 const TeamItem: React.FC<TeamItemProps> = ({
-  name,
   title,
+  position,
   description,
   image,
 }) => {
@@ -26,8 +26,8 @@ const TeamItem: React.FC<TeamItemProps> = ({
       />
       <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full bg-denim-500/50 transition-show group-hover:transition-hide">
         <div className="flex flex-col justify-end gap-1 size-full p-4">
-          <h4 className="font-bold text-lg md:text-xl">{name}</h4>
-          <p className="text-xs sm:text-sm">{title}</p>
+          <h4 className="font-bold text-lg md:text-xl">{title}</h4>
+          <p className="text-xs sm:text-sm">{position}</p>
           <p className="text-xs sm:text-sm line-clamp-2 sm:line-clamp-none">
             {description}
           </p>
@@ -53,8 +53,8 @@ const Team: React.FC<TeamProps> = ({ title, items }) => {
             {items.map((member, index) => (
               <TeamItem
                 key={index}
-                name={member.name}
                 title={member.title}
+                position={member.position}
                 description={member.description}
                 image={member.image}
               />

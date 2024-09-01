@@ -28,7 +28,7 @@ const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
   );
 };
 interface AnnouncementProps {
-  title: string;
+  title?: string;
   items: AnnouncementItemProps[];
 }
 const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
@@ -36,12 +36,14 @@ const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
     <section className="bg-denim-800">
       <div className="container py-8 md:py-16">
         <div className="flex flex-col gap-4 md:gap-8">
-          <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
-            <div className="flex items-center gap-1.5">
-              <IconSpeakerphone className="size-8 -rotate-12" />
-              {title}
-            </div>
-          </h2>
+          {title && (
+            <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
+              <div className="flex items-center gap-1.5">
+                <IconSpeakerphone className="size-8 -rotate-12" />
+                {title}
+              </div>
+            </h2>
+          )}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-8">
             <div className="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-2 [&>*:nth-child(-n+2)]:lg:col-span-1 gap-3 lg:gap-6">
               {items.map((announcement, index) => (
