@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ title, image, link }) => {
         />
         <h4 className="font-bold text-xl text-center">{title}</h4>
       </div>
-      <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full transition-show group-hover:transition-hide overflow-hidden">
+      <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full transition-show group-hover:transition-hide rounded-2xl overflow-hidden">
         <div className="flex justify-center items-center gap-1 w-full h-full text-xl">
           了解更多
           <IconArrowRight className="size-[1.25em]" />

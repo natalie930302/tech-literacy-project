@@ -15,7 +15,6 @@ const Page: React.FC = async () => {
   const LatestAnnouncement = data.Announcement.find(
     ({ name }: any) => name === "LatestAnnouncement"
   );
-  console.log(LatestAnnouncement);
   const HomeQuickCard = data.QuickLinkCard.find(
     ({ name }: any) => name === "HomeQuickCard"
   );

@@ -310,6 +310,59 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
   }
 };
 
+const submitComment = async (formData: any) => {
+  try {
+    const response = await notion.pages.create({
+      parent: {
+        database_id: process.env.NOTION_COMMENT_DATABASE_ID || "",
+      },
+      properties: {
+        Name: {
+          title: [
+            {
+              type: "text",
+              text: {
+                content: "contact form",
+              },
+            },
+          ],
+        },
+        Email: {
+          rich_text: [
+            {
+              type: "text",
+              text: {
+                content: formData.email,
+              },
+            },
+          ],
+        },
+        Message: {
+          rich_text: [
+            {
+              type: "text",
+              text: {
+                content: formData.message,
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    if (response) {
+      console.log("Form submitted successfully");
+      return true;
+    } else {
+      console.error("Failed to submit form");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    return false;
+  }
+};
+
 const checkCache = (cacheKey: string) => {
   const now = Date.now();
   // 檢查快取
@@ -324,4 +377,10 @@ const checkCache = (cacheKey: string) => {
   return null;
 };
 
-export { findRouteData, findCourseData, findPartnerData, findActivityData };
+export {
+  findRouteData,
+  findCourseData,
+  findPartnerData,
+  findActivityData,
+  submitComment,
+};
