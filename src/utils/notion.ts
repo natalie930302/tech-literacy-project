@@ -72,13 +72,9 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
         case "TimelineItem":
           return {
             title:
-              extractContent(data.Title?.title, "text") ||
-              data.Title?.formula?.string ||
-              "",
+              extractContent(data.Title?.title, "text") || "",
             description:
-              extractContent(data.Description?.rich_text, "text") ||
-              data.Description?.formula?.string ||
-              "",
+              extractContent(data.Description?.rich_text, "text") || "",
             link:
               extractContent(data.Link?.rich_text, "text") ||
               data.Link?.formula?.string ||

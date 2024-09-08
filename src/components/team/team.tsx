@@ -27,10 +27,8 @@ const TeamItem: React.FC<TeamItemProps> = ({
       <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full bg-denim-500/50 transition-show group-hover:transition-hide">
         <div className="flex flex-col justify-end gap-1 size-full p-4">
           <h4 className="font-bold text-lg md:text-xl">{title}</h4>
-          <p className="text-xs sm:text-sm">{position}</p>
-          <p className="text-xs sm:text-sm line-clamp-2 sm:line-clamp-none">
-            {description}
-          </p>
+          <div className="text-xs sm:text-sm" dangerouslySetInnerHTML={{ __html: position }}/>
+          <div className="text-xs sm:text-sm line-clamp-2 sm:line-clamp-none" dangerouslySetInnerHTML={{ __html: description }}/>
         </div>
       </div>
     </div>
