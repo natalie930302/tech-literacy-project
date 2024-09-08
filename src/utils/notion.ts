@@ -329,26 +329,26 @@ const submitComment = async (formData: any) => {
           title: [
             {
               text: {
-                content: "Contact Form", // This is the title value
+                content: "Contact Form",
               },
             },
           ],
         },
         Email: {
-          email: formData.email || null, // Email should be null if empty
+          email: formData.email || null,
         },
         Message: {
           rich_text: [
             {
               text: {
-                content: formData.message || "", // Message content
+                content: formData.message || "",
               },
             },
           ],
         },
         Status: {
           status: {
-            name: "Not started", // Make sure this status exists in your database
+            name: "Not started",
           },
         },
       },

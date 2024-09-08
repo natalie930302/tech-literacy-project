@@ -27,7 +27,8 @@ export default function Footer() {
         console.log("Form submitted successfully");
         e.target.reset();
       } else {
-        console.error("Failed to submit form", response);
+        const errorDetails = await response.text();
+        console.error("Failed to submit form:", errorDetails);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -64,8 +65,7 @@ export default function Footer() {
                 <br />
                 10671台北市大安區和平東路二段134號
                 <br />
-                No. 134, Sec. 2, Heping E. Rd., Da’an Dist., Taipei City 106320
-                , Taiwan (R.O.C.)
+                No. 134, Sec. 2, Heping E. Rd., Da’an Dist., Taipei City 106320, Taiwan (R.O.C.)
                 <br />
                 (02) 6639-6688
                 <br />
@@ -80,9 +80,7 @@ export default function Footer() {
             <div className="col-span-12 md:col-span-6">
               <form className="flex flex-col text-sm" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-white mb-2">
-                    電子郵件
-                  </label>
+                  <label htmlFor="email" className="block text-white mb-2">電子郵件</label>
                   <input
                     id="email"
                     type="email"
@@ -92,9 +90,7 @@ export default function Footer() {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="message" className="block text-white mb-2">
-                    留言
-                  </label>
+                  <label htmlFor="message" className="block text-white mb-2">留言</label>
                   <textarea
                     id="message"
                     placeholder="請輸入留言..."
@@ -114,25 +110,8 @@ export default function Footer() {
           <div>
             <p className="text-center text-sm text-gray-50 opacity-75">
               &copy; 2024
-              {new Date().getFullYear() !== 2024
-                ? `-${new Date().getFullYear()}`
-                : ""}{" "}
-              國立台北教育大學 數學暨資訊教育學系. 版權所有. Illustration by{" "}
-              <Link
-                href="https://icons8.com/illustrations/author/zD2oqC8lLBBA"
-                target="_blank"
-                className="underline"
-              >
-                Icons 8
-              </Link>{" "}
-              from{" "}
-              <Link
-                href="https://icons8.com/illustrations"
-                target="_blank"
-                className="underline"
-              >
-                Ouch!
-              </Link>
+              {new Date().getFullYear() !== 2024 ? `-${new Date().getFullYear()}` : ""}{" "}
+              國立台北教育大學 數學暨資訊教育學系. 版權所有.
             </p>
           </div>
         </div>
