@@ -12,8 +12,6 @@ export default function Footer() {
       message: e.target.message.value,
     };
 
-    console.log(formData);
-
     try {
       const response = await fetch("/api/submit-comment", {
         method: "POST",
@@ -25,10 +23,12 @@ export default function Footer() {
 
       if (response.ok) {
         console.log("Form submitted successfully");
+        alert("感謝您的留言！我們會盡快回覆您。");
         e.target.reset();
       } else {
         const errorDetails = await response.text();
         console.error("Failed to submit form:", errorDetails);
+        alert("抱歉，留言提交失敗。請稍後再試。");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
