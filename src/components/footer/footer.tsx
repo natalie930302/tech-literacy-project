@@ -1,8 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import { IconBrandInstagram, IconBrandFacebook } from "@tabler/icons-react";
-import ContactForm from "./contact-form";
 
 export default function Footer() {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch("/api/submit-comment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response?.ok) {
+        console.log("Form submitted successfully");
+        e.target.reset();
+      } else {
+        console.error("Failed to submit form");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   return (
     <footer className="bg-[url('/images/NTUE.png')] bg-no-repeat bg-cover bg-center">
       <div className="backdrop-blur-sm backdrop-brightness-50 backdrop-contrast-50">
@@ -47,7 +77,37 @@ export default function Footer() {
               </p>
             </div>
             <div className="col-span-12 md:col-span-6">
-              <ContactForm />
+              <form className="flex flex-col text-sm" onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-white mb-2">
+                    電子郵件
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="請輸入電子郵件..."
+                    className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="message" className="block text-white mb-2">
+                    留言
+                  </label>
+                  <textarea
+                    id="message"
+                    placeholder="請輸入留言..."
+                    className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="bg-denim-600 hover:bg-denim-700 hover:shadow text-sm text-white px-4 py-2 rounded-md w-fit max-w-full md:ml-auto"
+                >
+                  送出
+                </button>
+              </form>
             </div>
           </div>
           <div>

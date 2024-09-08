@@ -177,7 +177,7 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 const findCourseData = async (courseId?: string): Promise<any | null> => {
   const cacheKey = courseId
     ? `Course-${courseId}`
-    : `${process.env.NOTION_COURSE_DATABASE_ID}`;
+    : `Course-all`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -230,14 +230,20 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
   }
 };
 
-const findPartnerData = async (partnerType: string): Promise<any | null> => {
-  const cacheKey = `Partner-${partnerType}`;
+const findAllActivityData = async (activityType?: string): Promise<any | null> => {
+  const cacheKey = activityType ? `Activity-${activityType}` : "Activity-all";
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
   try {
     const response = (await notion.databases.query({
-      database_id: process.env.NOTION_PARTNER_DATABASE_ID || "",
+      database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
+      filter: {
+        property: "isVisible",
+        checkbox: {
+          equals: true,
+        },
+      },
     })) as any;
 
     const result = response.results
@@ -247,19 +253,14 @@ const findPartnerData = async (partnerType: string): Promise<any | null> => {
           extractContent(result.properties.Description?.rich_text, "text") ||
           "",
         type: result.properties.Type?.select?.name || "",
-        mainImage: {
-          name: result.properties.MainImage?.files[0]?.name || "",
-          url: result.properties.MainImage?.files[0]?.file.url || "",
-        },
         image:
           result.properties.Image?.files.map((file: any) => ({
             name: file.name || "",
             url: file.file.url || "",
           })) || [],
-        isVisible: result.properties.IsVisible?.checkbox || false,
       }))
       .filter(
-        (partner: any) => partner.type === partnerType && partner.isVisible
+        (partner: any) => !activityType || partner.type === activityType
       );
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
@@ -279,10 +280,20 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
       filter: {
-        property: "ID",
-        number: {
-          equals: parseInt(activityId),
-        },
+        and: [
+          {
+            property: "ID",
+            number: {
+              equals: parseInt(activityId),
+            },
+          },
+          {
+            property: "isVisible",
+            checkbox: {
+              equals: true,
+            },
+          },
+        ],
       },
     })) as any;
 
@@ -320,32 +331,28 @@ const submitComment = async (formData: any) => {
         Name: {
           title: [
             {
-              type: "text",
               text: {
-                content: "contact form",
+                content: "Contact Form",
               },
             },
           ],
         },
         Email: {
-          rich_text: [
-            {
-              type: "text",
-              text: {
-                content: formData.email,
-              },
-            },
-          ],
+          email: formData.email || "",
         },
         Message: {
           rich_text: [
             {
-              type: "text",
               text: {
-                content: formData.message,
+                content: formData.message || "",
               },
             },
           ],
+        },
+        Status: {
+          status: {
+            name: "Not started",
+          },
         },
       },
     });
@@ -380,7 +387,7 @@ const checkCache = (cacheKey: string) => {
 export {
   findRouteData,
   findCourseData,
-  findPartnerData,
+  findAllActivityData,
   findActivityData,
   submitComment,
 };
