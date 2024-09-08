@@ -13,7 +13,6 @@ const ExpandableImage: React.FC<any> = ({ src, alt, ...rest }) => {
       <Image
         src={src}
         alt={alt}
-        layout="responsive"
         width={500}
         height={500}
         {...rest}

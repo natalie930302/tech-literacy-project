@@ -8,10 +8,11 @@ export default function Footer() {
     e.preventDefault();
 
     const formData = {
-      name: e.target.name.value,
       email: e.target.email.value,
       message: e.target.message.value,
     };
+
+    console.log(formData);
 
     try {
       const response = await fetch("/api/submit-comment", {
@@ -22,11 +23,11 @@ export default function Footer() {
         body: JSON.stringify(formData),
       });
 
-      if (response?.ok) {
+      if (response.ok) {
         console.log("Form submitted successfully");
         e.target.reset();
       } else {
-        console.error("Failed to submit form");
+        console.error("Failed to submit form", response);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -99,7 +100,7 @@ export default function Footer() {
                     placeholder="請輸入留言..."
                     className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:outline-denim-600"
                     required
-                  ></textarea>
+                  />
                 </div>
                 <button
                   type="submit"

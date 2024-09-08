@@ -1,5 +1,4 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 60000;
+export const revalidate = 60;
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import Card from "@/components/card/card";

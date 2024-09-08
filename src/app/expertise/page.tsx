@@ -1,5 +1,4 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 60000;
+export const revalidate = 60;
 
 import { IconFileText } from "@tabler/icons-react";
 

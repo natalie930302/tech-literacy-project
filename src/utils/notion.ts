@@ -318,6 +318,7 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
 };
 
 const submitComment = async (formData: any) => {
+  console.log("Form data:", formData);
   try {
     const response = await notion.pages.create({
       parent: {
@@ -328,26 +329,26 @@ const submitComment = async (formData: any) => {
           title: [
             {
               text: {
-                content: "Contact Form",
+                content: "Contact Form", // This is the title value
               },
             },
           ],
         },
         Email: {
-          email: formData.email || "",
+          email: formData.email || null, // Email should be null if empty
         },
         Message: {
           rich_text: [
             {
               text: {
-                content: formData.message || "",
+                content: formData.message || "", // Message content
               },
             },
           ],
         },
         Status: {
           status: {
-            name: "Not started",
+            name: "Not started", // Make sure this status exists in your database
           },
         },
       },
