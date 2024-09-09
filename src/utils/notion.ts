@@ -299,9 +299,59 @@ const checkCache = (key: string): any | null => {
   return null;
 };
 
+const submitComment = async (formData: any): Promise<boolean> => {
+  try {
+    const response = await notion.pages.create({
+      parent: {
+        database_id: process.env.NOTION_COMMENT_DATABASE_ID || "",
+      },
+      properties: {
+        Name: {
+          title: [
+            {
+              text: {
+                content: "Contact Form",
+              },
+            },
+          ],
+        },
+        Email: {
+          email: formData.email || null,
+        },
+        Message: {
+          rich_text: [
+            {
+              text: {
+                content: formData.message || "",
+              },
+            },
+          ],
+        },
+        Status: {
+          status: {
+            name: "Not started",
+          },
+        },
+      },
+    });
+
+    if (response) {
+      console.log("Form submitted successfully");
+      return true;
+    } else {
+      console.error("Failed to submit form");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    return false;
+  }
+};
+
 export {
   findRouteData,
   findCourseData,
   findAllActivityData,
   findAllCommentData,
+  submitComment
 };

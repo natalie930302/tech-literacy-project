@@ -37,9 +37,7 @@ const Page: React.FC = async () => {
       <section className="bg-gray-200/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
-            <h2 className="font-semibold text-2xl md:text-3xl text-center">
-              {ProjectOverview.title}
-            </h2>
+            <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectOverview.title }} />
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {ProjectOverview.items.map((item: any, index: any) => (
@@ -58,18 +56,14 @@ const Page: React.FC = async () => {
       <section>
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
-            <h2 className="font-semibold text-2xl md:text-3xl text-center">
-              {ProjectStructure.title}
-            </h2>
+            <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectStructure.title }} />
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-8 w-fit m-auto">
               {ProjectStructure.items.map((item: any, index: any) => (
                 <MindMapCard {...item} key={index} />
               ))}
               <div className="flex max-w-2xl">
                 <article>
-                  <h4 className="font-semibold text-lg mb-2">
-                    {ProjectPurpose.title}
-                  </h4>
+                  <h4 className="font-semibold text-lg mb-2" dangerouslySetInnerHTML={{ __html: ProjectPurpose.title }} />
                   <div
                     dangerouslySetInnerHTML={{
                       __html: ProjectPurpose.description,
@@ -92,9 +86,7 @@ const Page: React.FC = async () => {
       <section className="bg-denim-100/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
-            <h2 className="font-semibold text-2xl md:text-3xl text-center">
-              {ProjectTimeline.title}
-            </h2>
+            <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectTimeline.title }} />
             <div className="timeline grid grid-cols-1 md:grid-cols-2">
               {ProjectTimeline.items.map((item: any, index: any) => (
                 <TimelineItem

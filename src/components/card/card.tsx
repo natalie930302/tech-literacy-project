@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({ title, image, link }) => {
           height={500}
           className="w-full max-w-48 h-full aspect-square object-contain object-center m-auto"
         />
-        <h4 className="font-bold text-xl text-center">{title}</h4>
+        <h4 className="font-bold text-xl text-center" dangerouslySetInnerHTML={{ __html: title }} />
       </div>
       <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full transition-show group-hover:transition-hide rounded-2xl overflow-hidden">
         <div className="flex justify-center items-center gap-1 w-full h-full text-xl">

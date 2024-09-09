@@ -13,7 +13,7 @@ const InfoSection: React.FC<any> = ({ title, content }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-medium">{title}</p>
+      <h5 className="font-medium" dangerouslySetInnerHTML={{ __html: title }} />
       {typeof content === "string" ? (
         <p dangerouslySetInnerHTML={{ __html: content }} />
       ) : (

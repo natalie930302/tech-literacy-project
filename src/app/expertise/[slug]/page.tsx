@@ -33,9 +33,7 @@ const Page: React.FC = async ({ params }: any) => {
             {data.length > 0 ? (
               data.map((item: any, index: any) => (
                 <div key={index} id={`${item.title}`} className="col-span-1 flex flex-col gap-4">
-                  <h3 className="font-semibold text-xl md:text-2xl">
-                    {item.title}
-                  </h3>
+                  <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: item.title }} />
                   <div
                     dangerouslySetInnerHTML={{ __html: item.description }}
                   />

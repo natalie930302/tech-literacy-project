@@ -106,11 +106,11 @@ export default function Footer() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-denim-600 hover:bg-denim-700 hover:shadow text-sm text-white px-4 py-2 rounded-md w-fit max-w-full md:ml-auto"
+                  className="bg-denim-600 hover:bg-denim-700 hover:shadow text-sm text-white text-center px-4 py-2 rounded-md w-fit max-w-full md:ml-auto"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 
-                  <IconLoader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"/> : "送出"}
+                  <IconLoader2 className="animate-spin size-5"/> : "送出"}
                 </button>
               </form>
             </div>
