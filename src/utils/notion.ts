@@ -318,7 +318,6 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
 };
 
 const submitComment = async (formData: any) => {
-  console.log("Form data:", formData);
   try {
     const response = await notion.pages.create({
       parent: {
