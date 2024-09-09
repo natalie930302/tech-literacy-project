@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { IconBrandInstagram, IconBrandFacebook } from "@tabler/icons-react";
+import { IconBrandInstagram, IconBrandFacebook, IconLoader2 } from "@tabler/icons-react";
 
 export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -109,7 +109,8 @@ export default function Footer() {
                   className="bg-denim-600 hover:bg-denim-700 hover:shadow text-sm text-white px-4 py-2 rounded-md w-fit max-w-full md:ml-auto"
                   disabled={isSubmitting}
                 >
-                  送出
+                  {isSubmitting ? 
+                  <IconLoader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"/> : "送出"}
                 </button>
               </form>
             </div>

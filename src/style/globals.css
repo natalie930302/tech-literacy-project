@@ -57,6 +57,10 @@
     @apply transition-all duration-300;
     @apply disabled:opacity-50 disabled:cursor-auto disabled:shadow-none disabled:border-gray-400 disabled:text-gray-400;
   }
+  button {
+    @apply disabled:cursor-auto disabled:shadow-none disabled:border-gray-400 disabled:bg-gray-400 disabled:text-white;
+  }
+
   .no-outer-shadow {
     --button-shadow-default: var(--shadow-inset), var(--hightlight-button);
     --button-shadow-active: var(--shadow-inset-active);
