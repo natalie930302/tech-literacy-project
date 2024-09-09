@@ -1,5 +1,4 @@
 import { Client } from "@notionhq/client";
-import { data } from "autoprefixer";
 import pLimit from "p-limit";
 
 // Notion 客戶端初始化
@@ -8,7 +7,7 @@ const notion = new Client({
 });
 
 // 設置並發請求數量限制
-const limit = pLimit(100);
+const limit = pLimit(50);
 
 // 設置快取機制
 const cache: Map<string, { data: any; timestamp: number }> = new Map();
@@ -20,7 +19,9 @@ const extractContent = (
   key: string
 ): string | undefined => {
   return (
-    contentArray?.map((item: any) => item[key].content).join("") || undefined
+    contentArray
+      ?.map((item: any) => item?.[key]?.content || "")
+      .join("") || undefined
   );
 };
 
@@ -71,8 +72,7 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
         case "QuickLinkCardItem":
         case "TimelineItem":
           return {
-            title:
-              extractContent(data.Title?.title, "text") || "",
+            title: extractContent(data.Title?.title, "text") || "",
             description:
               extractContent(data.Description?.rich_text, "text") || "",
             link:
@@ -170,10 +170,9 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
   }
 };
 
+// 查找課程數據
 const findCourseData = async (courseId?: string): Promise<any | null> => {
-  const cacheKey = courseId
-    ? `Course-${courseId}`
-    : `Course-all`;
+  const cacheKey = courseId ? `Course-${courseId}` : `Course-all`;
   const cacheData = checkCache(cacheKey);
   if (cacheData) return cacheData;
 
@@ -195,27 +194,21 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
         url: result.properties.MainImage?.files[0]?.file.url || "",
       },
       Goals: extractContent(result.properties.Goals?.rich_text, "text") || "",
-      Outline:
-        extractContent(result.properties.Outline?.rich_text, "text") || "",
-      Assessment:
-        extractContent(result.properties.Assessment?.rich_text, "text") || "",
-      Schedule:
-        extractContent(result.properties.Schedule?.rich_text, "text") || "",
-      References:
-        extractContent(result.properties.References?.rich_text, "text") || "",
+      Outline: extractContent(result.properties.Outline?.rich_text, "text") || "",
+      Assessment: extractContent(result.properties.Assessment?.rich_text, "text") || "",
+      Schedule: extractContent(result.properties.Schedule?.rich_text, "text") || "",
+      References: extractContent(result.properties.References?.rich_text, "text") || "",
       Highlights: result.properties.Highlights?.files.map((file: any) => ({
         name: file.name || "",
         url: file.file.url || "",
       })),
     }));
 
-    const courseIdTransformed =
-      courseId?.replace(/\s|-/g, "").toLowerCase() || "";
+    const courseIdTransformed = courseId?.replace(/\s|-/g, "").toLowerCase() || "";
     const result =
       data.find(
         (course: any) =>
-          course.Title.replace(/\s|-/g, "").toLowerCase() ===
-          courseIdTransformed
+          course.Title.replace(/\s|-/g, "").toLowerCase() === courseIdTransformed
       ) || data;
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
@@ -226,6 +219,7 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
   }
 };
 
+// 查找所有活動數據
 const findAllActivityData = async (activityType?: string): Promise<any | null> => {
   const cacheKey = activityType ? `Activity-${activityType}` : "Activity-all";
   const cacheData = checkCache(cacheKey);
@@ -246,8 +240,7 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
       .map((result: any) => ({
         title: extractContent(result.properties.Title?.title, "text") || "",
         description:
-          extractContent(result.properties.Description?.rich_text, "text") ||
-          "",
+          extractContent(result.properties.Description?.rich_text, "text") || "",
         type: result.properties.Type?.select?.name || "",
         image:
           result.properties.Image?.files.map((file: any) => ({
@@ -255,59 +248,7 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
             url: file.file.url || "",
           })) || [],
       }))
-      .filter(
-        (partner: any) => !activityType || partner.type === activityType
-      );
-
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
-    return result;
-  } catch (error) {
-    console.error("Error fetching partners:", error);
-    return [];
-  }
-};
-
-const findActivityData = async (activityId: string): Promise<any | null> => {
-  const cacheKey = `Activity-${activityId}`;
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
-  try {
-    const response = (await notion.databases.query({
-      database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
-      filter: {
-        and: [
-          {
-            property: "ID",
-            number: {
-              equals: parseInt(activityId),
-            },
-          },
-          {
-            property: "isVisible",
-            checkbox: {
-              equals: true,
-            },
-          },
-        ],
-      },
-    })) as any;
-
-    const result = {
-      title:
-        extractContent(response.results[0]?.properties.Title?.title, "text") ||
-        "",
-      description:
-        extractContent(
-          response.results[0]?.properties.Description?.rich_text,
-          "text"
-        ) || "",
-      image:
-        response.results[0]?.properties.Image?.files.map((file: any) => ({
-          name: file.name || "",
-          url: file.file.url || "",
-        })) || [],
-    };
+      .filter((partner: any) => !activityType || partner.type === activityType);
 
     cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
@@ -317,65 +258,43 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
   }
 };
 
-const submitComment = async (formData: any) => {
-  try {
-    const response = await notion.pages.create({
-      parent: {
-        database_id: process.env.NOTION_COMMENT_DATABASE_ID || "",
-      },
-      properties: {
-        Name: {
-          title: [
-            {
-              text: {
-                content: "Contact Form",
-              },
-            },
-          ],
-        },
-        Email: {
-          email: formData.email || null,
-        },
-        Message: {
-          rich_text: [
-            {
-              text: {
-                content: formData.message || "",
-              },
-            },
-          ],
-        },
-        Status: {
-          status: {
-            name: "Not started",
-          },
-        },
-      },
-    });
+// 查找評論數據
+const findAllCommentData = async (routePath?: string): Promise<any | null> => {
+  const cacheKey = routePath ? `Comment-${routePath}` : `Comment-all`;
+  const cacheData = checkCache(cacheKey);
+  if (cacheData) return cacheData;
 
-    if (response) {
-      console.log("Form submitted successfully");
-      return true;
-    } else {
-      console.error("Failed to submit form");
-      return false;
-    }
+  try {
+    const response = (await notion.databases.query({
+      database_id: process.env.NOTION_COMMENT_DATABASE_ID || "",
+    })) as any;
+
+    const data = response.results.map((result: any) => ({
+      name: extractContent(result.properties.Name?.title, "text") || "",
+      email: extractContent(result.properties.Email?.rich_text, "text") || "",
+      comment: extractContent(result.properties.Comment?.rich_text, "text") || "",
+    }));
+
+    const filteredData = routePath
+      ? data.filter(
+          (comment: any) =>
+            comment.routePath?.toLowerCase() === routePath.toLowerCase()
+        )
+      : data;
+
+    cache.set(cacheKey, { data: filteredData, timestamp: Date.now() });
+    return filteredData;
   } catch (error) {
-    console.error("Error submitting form:", error);
-    return false;
+    console.error("Error fetching comments:", error);
+    return [];
   }
 };
 
-const checkCache = (cacheKey: string) => {
-  const now = Date.now();
-  // 檢查快取
-  if (cache.has(cacheKey)) {
-    const cached = cache.get(cacheKey)!;
-    if (now - cached.timestamp < CACHE_TTL) {
-      return cached.data;
-    }
-    // 移除過期快取
-    cache.delete(cacheKey);
+// 檢查快取
+const checkCache = (key: string): any | null => {
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.data;
   }
   return null;
 };
@@ -384,6 +303,5 @@ export {
   findRouteData,
   findCourseData,
   findAllActivityData,
-  findActivityData,
-  submitComment,
+  findAllCommentData,
 };

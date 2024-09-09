@@ -1,18 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { IconBrandInstagram, IconBrandFacebook } from "@tabler/icons-react";
 
 export default function Footer() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    const formData = {
-      email: e.target.email.value,
-      message: e.target.message.value,
-    };
+    setIsSubmitting(true);
 
     try {
+      const formData = {
+        email: e.target.email.value,
+        message: e.target.message.value,
+      };
+
       const response = await fetch("/api/submit-comment", {
         method: "POST",
         headers: {
@@ -32,6 +36,8 @@ export default function Footer() {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -101,6 +107,7 @@ export default function Footer() {
                 <button
                   type="submit"
                   className="bg-denim-600 hover:bg-denim-700 hover:shadow text-sm text-white px-4 py-2 rounded-md w-fit max-w-full md:ml-auto"
+                  disabled={isSubmitting}
                 >
                   送出
                 </button>
