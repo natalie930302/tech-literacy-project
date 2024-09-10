@@ -10,13 +10,14 @@ const notion = new Client({
 const limit = pLimit(50);
 
 // 提取 Notion 內容的工具函數
-const extractContent = (
-  contentArray: any[],
-  key: string
-): string | undefined => {
+const extractContent = (contentArray: any[], key: string): string | undefined => {
   return (
     contentArray
-      ?.map((item: any) => item?.[key]?.content || "")
+      ?.map((item: any) => {
+        const content = item?.[key]?.content || "";
+        const link = item?.href;
+        return link ? `<a class="underline" href="${link}" target="_blank">${content}</a>` : content;
+      })
       .join("") || undefined
   );
 };

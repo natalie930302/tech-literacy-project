@@ -26,7 +26,7 @@ export default function RootLayout({
         <Header />
         <Suspense fallback={
           <div className="flex items-center justify-center gap-4 h-screen text-center bg-white">
-            <IconLoader2 className="animate-spin size-5"/>
+            <IconLoader2 className="animate-spin size-6 text-gray-500"/>
           </div>
         }>
           {children}
