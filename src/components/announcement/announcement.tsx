@@ -20,7 +20,7 @@ const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
       <div className="flex justify-between items-center h-full gap-4 p-6">
         <div className="flex flex-col gap-2">
           <h3 className="font-semibold text-xl" dangerouslySetInnerHTML={{ __html: title || "" }} />
-          <div dangerouslySetInnerHTML={{ __html: description || "" }} />
+          {description.length > 0 && <div className="line-clamp-3" dangerouslySetInnerHTML={{ __html: description || "" }} />}
         </div>
         <IconChevronRight className="shrink-0 size-10 translate-x-0 group-hover:translate-x-2 transition-all duration-500" />
       </div>

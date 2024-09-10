@@ -261,6 +261,10 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
         title: extractContent(result.properties.Title?.title, "text") || "",
         description:
           extractContent(result.properties.Description?.rich_text, "text") || "",
+        link:
+          extractContent(result.properties.Link?.rich_text, "text") ||
+          result.properties.Link?.formula?.string ||
+          "",
         type: result.properties.Type?.select?.name || "",
         image:
           result.properties.Image?.files.map((file: any) => ({

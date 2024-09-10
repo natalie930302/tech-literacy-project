@@ -4,13 +4,15 @@ import { findAllActivityData } from "@/utils/notion";
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import ExpandableImage from "@/components/expandable-image/expandable-image";
+import Link from "next/link";
 
 const Page: React.FC = async ({ params }: any) => {
-  const routeName = decodeURIComponent(params.slug);
+  const routeName = decodeURIComponent(params.type);
 
   const data: {
     title: string;
     description: string;
+    link: string;
     image: {
       name: string;
       url: string;
@@ -34,19 +36,20 @@ const Page: React.FC = async ({ params }: any) => {
               data.map((item: any, index: any) => (
                 <div key={index} className="col-span-1 flex flex-col gap-4">
                   <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: item?.title || "" }} />
-                  <div dangerouslySetInnerHTML={{ __html: item?.description || "" }} />
-                  <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
-                    {item.image.map((image: any, index: any) => (
-                      <ExpandableImage
-                        key={index}
-                        src={image.url}
-                        alt={image.name}
-                        width={1080}
-                        height={1080}
-                        className="aspect-square object-cover object-center"
-                      />
-                    ))}
+                  {item?.description.length > 0 && <div className="line-clamp-3" dangerouslySetInnerHTML={{ __html: item?.description || "" }} />}
+                  <div className="grid grid-cols-3 md:grid-cols-8 gap-3">
+                    {
+                      item.image.slice(0, 5).map((image: any, index: any) => (
+                        <ExpandableImage
+                          key={index}
+                          src={image.url}
+                          alt={image.name}
+                          className="aspect-square object-cover object-center"
+                        />
+                      ))
+                    }
                   </div>
+                  <Link href={`${item.link}`} className="btn flex items-center gap-1 bg-denim-400 shadow-denim-600 w-fit ml-auto">活動詳情</Link>
                 </div>
               ))
             ) : (

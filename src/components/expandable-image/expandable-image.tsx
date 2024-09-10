@@ -11,11 +11,11 @@ const ExpandableImage: React.FC<any> = ({ src, alt, ...rest }) => {
   return (
     <div className="relative group">
       <Image
+        {...rest}
         src={src}
         alt={alt}
         width={500}
         height={500}
-        {...rest}
         onClick={handleExpand}
         className={`cursor-pointer bg-gray-400 ${rest.className}`}
         loading="lazy"

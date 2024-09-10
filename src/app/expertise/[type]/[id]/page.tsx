@@ -7,7 +7,9 @@ import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import ExpandableImage from "@/components/expandable-image/expandable-image";
 
 const Page: React.FC = async ({ params }: any) => {
-  const routeName = decodeURIComponent(params.slug);
+  const routeType = decodeURIComponent(params.type);
+  const routeName = decodeURIComponent(params.id);
+  console.log(routeType, routeName);
 
   const data: {
     title: string;
@@ -29,7 +31,7 @@ const Page: React.FC = async ({ params }: any) => {
           <h1 className="font-semibold text-3xl md:text-4xl text-center">
             {data.title}
           </h1>
-          <Breadcrumb givenNames={[{ key: 1, value: data.title }]}  />
+          <Breadcrumb givenNames={[{ key: 1, value: routeType }, { key: 2, value: data.title }]}  />
         </div>
       </section>
       <section>
@@ -37,15 +39,13 @@ const Page: React.FC = async ({ params }: any) => {
           <div className="grid grid-cols-1 gap-6 md:gap-10 divide-y-2 [&>:nth-child(n+2)]:pt-6 [&>:nth-child(n+2)]:md:pt-10">
           <div id={`${data.title}`} className="col-span-1 flex flex-col gap-4">
             <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: data?.title || "" }} />
-            <div dangerouslySetInnerHTML={{ __html: data.description || "" }} />
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+            {data.description.length > 0 && <div dangerouslySetInnerHTML={{ __html: data.description || "" }} />}
+            <div className="grid grid-cols-3 md:grid-cols-8 gap-3">
               {data.image.map((image: any, index: any) => (
                 <ExpandableImage
                   key={index}
                   src={image.url}
                   alt={image.name}
-                  width={1080}
-                  height={1080}
                   className="aspect-square object-cover object-center"
                 />
               ))}

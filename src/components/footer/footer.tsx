@@ -46,7 +46,7 @@ export default function Footer() {
       <div className="backdrop-blur-sm backdrop-brightness-50 backdrop-contrast-50">
         <div className="container py-8 pb-4">
           <h3 className="text-2xl font-semibold text-white mb-6">聯繫我們</h3>
-          <div className="grid grid-cols-12 gap-4 mb-6">
+          <div className="grid grid-cols-12 gap-4 lg:gap-8 mb-6">
             <div className="col-span-12 md:col-span-6">
               <div className="text-sm text-gray-600 mb-6">
                 <div className="flex items-center gap-3">
