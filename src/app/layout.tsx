@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "@/style/globals.css";
+import { Suspense } from 'react';
+
 
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
@@ -22,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>
+          {children}
+        </Suspense>
         <Footer />
         <ScrollToTop />
       </body>

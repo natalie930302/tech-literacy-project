@@ -19,8 +19,8 @@ const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
     >
       <div className="flex justify-between items-center h-full gap-4 p-6">
         <div className="flex flex-col gap-2">
-          <h3 className="font-semibold text-xl" dangerouslySetInnerHTML={{ __html: title }} />
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <h3 className="font-semibold text-xl" dangerouslySetInnerHTML={{ __html: title || "" }} />
+          <div dangerouslySetInnerHTML={{ __html: description || "" }} />
         </div>
         <IconChevronRight className="shrink-0 size-10 translate-x-0 group-hover:translate-x-2 transition-all duration-500" />
       </div>
@@ -40,7 +40,7 @@ const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
             <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
               <div className="flex items-center gap-1.5">
                 <IconSpeakerphone className="size-8 -rotate-12" />
-                <span dangerouslySetInnerHTML={{ __html: title }} />
+                <span dangerouslySetInnerHTML={{ __html: title || "" }} />
               </div>
             </h2>
           )}

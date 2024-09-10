@@ -13,9 +13,9 @@ const InfoSection: React.FC<any> = ({ title, content }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h5 className="font-medium" dangerouslySetInnerHTML={{ __html: title }} />
+      <h5 className="font-medium" dangerouslySetInnerHTML={{ __html: title || "" }} />
       {typeof content === "string" ? (
-        <p dangerouslySetInnerHTML={{ __html: content }} />
+        <p dangerouslySetInnerHTML={{ __html: content || "" }} />
       ) : (
         content
       )}

@@ -33,7 +33,7 @@ const TabContainer: React.FC<any> = ({ data, limit = false }) => {
             className={`whitespace-pre-line p-4 ${
               activeTab === index ? "block" : "hidden"
             }`}
-            dangerouslySetInnerHTML={{ __html: data[tab] }}
+            dangerouslySetInnerHTML={{ __html: data[tab] || "" }}
           />
         ))}
       </div>

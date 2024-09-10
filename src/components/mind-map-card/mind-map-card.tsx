@@ -21,12 +21,12 @@ const RecursiveMindMapNode: React.FC<RecursiveMindMapNodeProps> = ({
     <li className="children-item">
       {node.link ? (
         <Link href={node.link} className="btn flex items-center gap-1">
-          <div dangerouslySetInnerHTML={{ __html: node.title }} />
+          <div dangerouslySetInnerHTML={{ __html: node.title || "" }} />
           <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
         </Link>
       ) : (
         <div className="btn shrink-0">
-          <div dangerouslySetInnerHTML={{ __html: node.title }} />
+          <div dangerouslySetInnerHTML={{ __html: node.title || "" }} />
         </div>
       )}
       {node.items && node.items.length > 0 && (
@@ -58,12 +58,12 @@ const MindMapCard: React.FC<MindMapCardProps> = ({
   >
     {link ? (
       <Link href={link} className="bt flex items-center gap-1">
-        <div dangerouslySetInnerHTML={{ __html: title }} />
+        <div dangerouslySetInnerHTML={{ __html: title || "" }} />
         <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
       </Link>
     ) : (
       <div className="btn shrink-0">
-        <div dangerouslySetInnerHTML={{ __html: title }} />
+        <div dangerouslySetInnerHTML={{ __html: title || "" }} />
       </div>
     )}
     <ol className="children">

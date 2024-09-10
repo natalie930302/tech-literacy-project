@@ -33,10 +33,8 @@ const Page: React.FC = async ({ params }: any) => {
             {data.length > 0 ? (
               data.map((item: any, index: any) => (
                 <div key={index} id={`${item.title}`} className="col-span-1 flex flex-col gap-4">
-                  <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: item.title }} />
-                  <div
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                  />
+                  <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: item?.title || "" }} />
+                  <div dangerouslySetInnerHTML={{ __html: item?.description || "" }} />
                   <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
                     {item.image.map((image: any, index: any) => (
                       <ExpandableImage

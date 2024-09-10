@@ -74,10 +74,7 @@ const CourseTable: React.FC = async () => {
                           ).toLowerCase()}`}
                           className="flex items-center gap-1 group"
                         >
-                          <div
-                            dangerouslySetInnerHTML={{ __html: item.Name }}
-                            className="underline group-hover:text-denim-500"
-                          />
+                          <div dangerouslySetInnerHTML={{ __html: item?.Name || "" }} className="underline group-hover:text-denim-500" />
                           <IconHandClick className="size-5 stroke-1.5 fill-white shrink-0" />
                         </Link>
                       </td>

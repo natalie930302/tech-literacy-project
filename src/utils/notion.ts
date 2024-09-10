@@ -9,10 +9,6 @@ const notion = new Client({
 // 設置並發請求數量限制
 const limit = pLimit(50);
 
-// 設置快取機制
-const cache: Map<string, { data: any; timestamp: number }> = new Map();
-const CACHE_TTL = 1000 * 60 * 5; // 5 分鐘
-
 // 提取 Notion 內容的工具函數
 const extractContent = (
   contentArray: any[],
@@ -27,10 +23,6 @@ const extractContent = (
 
 // 獲取頁面細節
 const getPageDetails = async (id: string, type: string): Promise<any> => {
-  const cacheKey = `PageDetail-${id}`;
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
   try {
     const response = (await notion.pages.retrieve({ page_id: id })) as any;
     const data = response.properties;
@@ -97,7 +89,6 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
       }
     })();
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error(`Error fetching page details for ${id}:`, error);
@@ -120,10 +111,6 @@ const extractRelationIds = async (
 
 // 查找路由數據
 const findRouteData = async (routePath: string): Promise<any | null> => {
-  const cacheKey = `Route-${routePath}`;
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_ROUTE_DATABASE_ID || "",
@@ -162,7 +149,6 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
       Timeline: await extractRelationIds(data.properties.Timeline, "Timeline"),
     };
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error("Error fetching route data:", error);
@@ -172,10 +158,6 @@ const findRouteData = async (routePath: string): Promise<any | null> => {
 
 // 查找課程數據
 const findCourseData = async (courseId?: string): Promise<any | null> => {
-  const cacheKey = courseId ? `Course-${courseId}` : `Course-all`;
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_COURSE_DATABASE_ID || "",
@@ -211,7 +193,6 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
           course.Title.replace(/\s|-/g, "").toLowerCase() === courseIdTransformed
       ) || data;
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -221,10 +202,6 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
 
 // 查找所有活動數據
 const findAllActivityData = async (activityType?: string): Promise<any | null> => {
-  const cacheKey = activityType ? `Activity-${activityType}` : "Activity-all";
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
@@ -250,7 +227,6 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
       }))
       .filter((partner: any) => !activityType || partner.type === activityType);
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error("Error fetching activities:", error);
@@ -260,10 +236,6 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
 
 // 查找評論數據
 const findAllCommentData = async (routePath?: string): Promise<any | null> => {
-  const cacheKey = routePath ? `Comment-${routePath}` : `Comment-all`;
-  const cacheData = checkCache(cacheKey);
-  if (cacheData) return cacheData;
-
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_COMMENT_DATABASE_ID || "",
@@ -282,21 +254,11 @@ const findAllCommentData = async (routePath?: string): Promise<any | null> => {
         )
       : data;
 
-    cache.set(cacheKey, { data: filteredData, timestamp: Date.now() });
     return filteredData;
   } catch (error) {
     console.error("Error fetching comments:", error);
     return [];
   }
-};
-
-// 檢查快取
-const checkCache = (key: string): any | null => {
-  const cached = cache.get(key);
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    return cached.data;
-  }
-  return null;
 };
 
 const submitComment = async (formData: any): Promise<boolean> => {

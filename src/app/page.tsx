@@ -41,7 +41,7 @@ const Page: React.FC = async () => {
               />
             </div>
             <div className="col-span-1 md:col-span-9 flex flex-col justify-center items-center">
-              <div dangerouslySetInnerHTML={{ __html: HomeHero.description }} />
+              <div dangerouslySetInnerHTML={{ __html: HomeHero?.description || "" || "" }} />
             </div>
             <div className="col-span-1 md:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {HomeQuickCard.items.map((card: any, index: any) => (

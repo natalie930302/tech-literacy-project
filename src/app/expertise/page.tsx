@@ -43,34 +43,22 @@ const Page: React.FC = async () => {
             <h2 className="font-semibold text-2xl md:text-3xl">專長加註辦法</h2>
             <div className="grid grid-cols-1 md:grid-cols-7 gap-4 md:gap-8">
               <div className="col-span-4 flex flex-col gap-4">
-                <h3 className="font-semibold text-2xl text-denim-700" dangerouslySetInnerHTML={{ __html: ExpertiseDescription.title }} />
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: ExpertiseDescription.description,
-                  }}
-                />
+                <h3 className="font-semibold text-2xl text-denim-700" dangerouslySetInnerHTML={{ __html: ExpertiseDescription?.title || "" }} />
+                <div dangerouslySetInnerHTML={{ __html: ExpertiseDescription?.description || "" }} />
               </div>
               <div className="col-span-3 flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col gap-4">
                   <h3 className="font-semibold text-2xl text-denim-700">
                     <div className="flex items-center gap-1">
                       <IconFileText className="w-7 h-7" />
-                      <span dangerouslySetInnerHTML={{ __html: ExpertiseApplication.title }} />
+                      <span dangerouslySetInnerHTML={{ __html: ExpertiseApplication?.title || "" }} />
                     </div>
                   </h3>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: ExpertiseApplication.description,
-                    }}
-                  />
+                  <div dangerouslySetInnerHTML={{ __html: ExpertiseApplication?.description || "" }} />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-semibold text-2xl text-denim-700" dangerouslySetInnerHTML={{ __html: ExpertiseRelatedRegulatoryDocuments.title }} />
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: ExpertiseRelatedRegulatoryDocuments.description,
-                    }}
-                  />
+                  <h3 className="font-semibold text-2xl text-denim-700" dangerouslySetInnerHTML={{ __html: ExpertiseRelatedRegulatoryDocuments?.title || "" }} />
+                  <div dangerouslySetInnerHTML={{ __html: ExpertiseRelatedRegulatoryDocuments?.description || ""}} />
                 </div>
               </div>
             </div>

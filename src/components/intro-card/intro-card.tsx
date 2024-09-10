@@ -20,8 +20,8 @@ const IntroCard: React.FC<IntroCardProps> = ({ title, description, image }) => {
           className="w-60 max-w-full aspect-square object-contain object-center group-hover:scale-110 py-4"
           priority={true}
         />
-        <h4 className="font-semibold text-xl" dangerouslySetInnerHTML={{ __html: title }} />
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+        <h4 className="font-semibold text-xl" dangerouslySetInnerHTML={{ __html: title || "" }} />
+        <div dangerouslySetInnerHTML={{ __html: description || "" }} />
       </div>
     </div>
   );
