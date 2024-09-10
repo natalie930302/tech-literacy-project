@@ -32,7 +32,7 @@ const Page: React.FC = async ({ params }: any) => {
           <div className="grid grid-cols-1 gap-6 md:gap-10 divide-y-2 [&>:nth-child(n+2)]:pt-6 [&>:nth-child(n+2)]:md:pt-10">
             {data.length > 0 ? (
               data.map((item: any, index: any) => (
-                <div key={index} id={`${item.title}`} className="col-span-1 flex flex-col gap-4">
+                <div key={index} className="col-span-1 flex flex-col gap-4">
                   <h3 className="font-semibold text-xl md:text-2xl" dangerouslySetInnerHTML={{ __html: item?.title || "" }} />
                   <div dangerouslySetInnerHTML={{ __html: item?.description || "" }} />
                   <div className="grid grid-cols-3 md:grid-cols-5 gap-3">

@@ -200,6 +200,49 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
   }
 };
 
+// 查找活動數據
+const findActivityData = async (activityId: string): Promise<any | null> => {
+  try {
+    const response = (await notion.databases.query({
+      database_id: process.env.NOTION_ACTIVITY_DATABASE_ID || "",
+      filter: {
+        and: [
+          {
+            property: "ID",
+            number: {
+              equals: parseInt(activityId),
+            },
+          },
+          {
+            property: "isVisible",
+            checkbox: {
+              equals: true,
+            },
+          },
+        ],
+      },
+    })) as any;
+
+    const data = response.results[0];
+    if (!data) return null;
+    const result = {
+      title: extractContent(data.properties.Title?.title, "text") || "",
+      description:
+        extractContent(data.properties.Description?.rich_text, "text") || "",
+      type: data.properties.Type?.select?.name || "",
+      image:
+        data.properties.Image?.files.map((file: any) => ({
+          name: file.name || "",
+          url: file.file.url || "",
+        })) || [],
+    };
+    return result;
+  } catch (error) {
+    console.error("Error fetching activity data:", error);
+    return null;
+  }
+};
+
 // 查找所有活動數據
 const findAllActivityData = async (activityType?: string): Promise<any | null> => {
   try {
@@ -313,6 +356,7 @@ const submitComment = async (formData: any): Promise<boolean> => {
 export {
   findRouteData,
   findCourseData,
+  findActivityData,
   findAllActivityData,
   findAllCommentData,
   submitComment
