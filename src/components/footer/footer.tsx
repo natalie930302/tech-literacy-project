@@ -120,6 +120,7 @@ export default function Footer() {
               &copy; 2024
               {new Date().getFullYear() !== 2024 ? `-${new Date().getFullYear()}` : ""}{" "}
               國立台北教育大學 數學暨資訊教育學系. 版權所有.
+              Illustration by <a className="underline" href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> from <a className="underline" href="https://icons8.com/illustrations">Ouch!</a>
             </p>
           </div>
         </div>
