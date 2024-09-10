@@ -57,7 +57,7 @@ const Page: React.FC = async () => {
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectStructure?.title || "" }} />
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-8 w-fit m-auto">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-8 w-fit m-auto">
               {ProjectStructure.items.map((item: any, index: any) => (
                 <MindMapCard {...item} key={index} />
               ))}
