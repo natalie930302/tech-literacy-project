@@ -24,7 +24,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={
+          <div className="flex items-center justify-center gap-4 h-screen text-center bg-white">
+            <p className="text-2xl">Loading...</p>
+          </div>
+        }>
           {children}
         </Suspense>
         <Footer />
