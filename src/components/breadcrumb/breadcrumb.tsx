@@ -43,13 +43,12 @@ const Breadcrumb: React.FC<{
                   <Link
                     href={href}
                     className="ms-1 text-sm font-medium text-gray-600 hover:text-denim-600 md:ms-2"
-                  >
-                    {getBreadcrumbName(segment) || givenName}
-                  </Link>
+                    dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
+                  />
                 ) : (
-                  <span className="ms-1 text-sm font-medium text-gray-400 md:ms-2">
-                    {getBreadcrumbName(segment) || givenName}
-                  </span>
+                  <span className="ms-1 text-sm font-medium text-gray-400 md:ms-2"
+                    dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
+                  />
                 )}
               </div>
             </li>

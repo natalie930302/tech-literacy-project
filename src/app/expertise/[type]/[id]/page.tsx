@@ -28,9 +28,7 @@ const Page: React.FC = async ({ params }: any) => {
     <main>
       <section>
         <div className="container py-8 md:py-16 pb-4 md:pb-8">
-          <h1 className="font-semibold text-3xl md:text-4xl text-center">
-            {data.title}
-          </h1>
+          <h1 className="font-semibold text-3xl md:text-4xl text-center" dangerouslySetInnerHTML={{ __html: data?.title || "" }} />
           <Breadcrumb givenNames={[{ key: 1, value: routeType }, { key: 2, value: data.title }]}  />
         </div>
       </section>
