@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/style/globals.css";
 import { Suspense } from 'react';
-
+import { IconLoader2 } from "@tabler/icons-react";
 
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
@@ -26,7 +26,7 @@ export default function RootLayout({
         <Header />
         <Suspense fallback={
           <div className="flex items-center justify-center gap-4 h-screen text-center bg-white">
-            <p className="text-xl text-gray-400">Loading...</p>
+            <IconLoader2 className="animate-spin size-5"/>
           </div>
         }>
           {children}
