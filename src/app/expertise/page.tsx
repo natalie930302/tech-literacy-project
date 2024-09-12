@@ -4,6 +4,7 @@ import { IconFileText } from "@tabler/icons-react";
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import CourseTable from "@/components/course-table/course-table";
+import ExpertiseList from "@/components/expertise-list/expertise-list";
 import Announcement from "@/components/announcement/announcement";
 
 import { findRouteData } from "@/utils/notion";
@@ -21,9 +22,6 @@ const Page: React.FC = async () => {
   );
   const ExpertiseRelatedRegulatoryDocuments = data.Article.find(
     ({ name }: any) => name === "ExpertiseRelatedRegulatoryDocuments"
-  );
-  const ExpertiseAnnotated = data.Article.find(
-    ({ name }: any) => name === "ExpertiseAnnotated"
   );
 
   return (
@@ -68,14 +66,7 @@ const Page: React.FC = async () => {
           </div>
         </div>
       </section>
-      <section id="minor-specialization-guidelines">
-        <div className="container py-8 md:py-16">
-          <div className="flex flex-col gap-4 md:gap-8">
-            <h2 className="font-semibold text-2xl md:text-3xl" dangerouslySetInnerHTML={{ __html: ExpertiseAnnotated?.title || "" }} />
-            <div dangerouslySetInnerHTML={{ __html: ExpertiseAnnotated?.description || "" }} />
-          </div>
-        </div>
-      </section>
+      <ExpertiseList />
       <CourseTable />
     </main>
   );

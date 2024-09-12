@@ -201,6 +201,25 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
   }
 };
 
+// 查找國小教師加註科技領域專長通過名單
+const findExpertiseData = async (): Promise<any | null> => {
+  try {
+    const response = (await notion.databases.query({
+      database_id: process.env.NOTION_EXPERTISE_DATABASE_ID || "",
+    })) as any;
+
+    const data = response.results.map((result: any) => ({
+      ID: extractContent(result.properties.ID?.title, "text") || "",
+      Name: extractContent(result.properties.Name?.rich_text, "text") || result.properties.Name?.formula?.string || "",
+    }));
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching expertise data:", error);
+    return [];
+  }
+};
+
 // 查找活動數據
 const findActivityData = async (activityId: string): Promise<any | null> => {
   try {
@@ -361,8 +380,9 @@ const submitComment = async (formData: any): Promise<boolean> => {
 export {
   findRouteData,
   findCourseData,
+  findExpertiseData,
   findActivityData,
   findAllActivityData,
   findAllCommentData,
-  submitComment
+  submitComment,
 };
