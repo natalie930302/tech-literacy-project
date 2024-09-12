@@ -22,6 +22,9 @@ const Page: React.FC = async () => {
   const ExpertiseRelatedRegulatoryDocuments = data.Article.find(
     ({ name }: any) => name === "ExpertiseRelatedRegulatoryDocuments"
   );
+  const ExpertiseAnnotated = data.Article.find(
+    ({ name }: any) => name === "ExpertiseAnnotated"
+  );
 
   return (
     <main>
@@ -51,7 +54,7 @@ const Page: React.FC = async () => {
                   <h3 className="font-semibold text-2xl text-denim-700">
                     <div className="flex items-center gap-1">
                       <IconFileText className="w-7 h-7" />
-                      <span dangerouslySetInnerHTML={{ __html: ExpertiseApplication?.title || "" }} />
+                      <div dangerouslySetInnerHTML={{ __html: ExpertiseApplication?.title || "" }} />
                     </div>
                   </h3>
                   <div dangerouslySetInnerHTML={{ __html: ExpertiseApplication?.description || "" }} />
@@ -62,6 +65,14 @@ const Page: React.FC = async () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section id="minor-specialization-guidelines">
+        <div className="container py-8 md:py-16">
+          <div className="flex flex-col gap-4 md:gap-8">
+            <h2 className="font-semibold text-2xl md:text-3xl" dangerouslySetInnerHTML={{ __html: ExpertiseAnnotated?.title || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: ExpertiseAnnotated?.description || "" }} />
           </div>
         </div>
       </section>

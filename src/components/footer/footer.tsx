@@ -73,11 +73,9 @@ export default function Footer() {
                 <br />
                 No. 134, Sec. 2, Heping E. Rd., Da’an Dist., Taipei City 106320, Taiwan (R.O.C.)
                 <br />
-                (02) 6639-6688
+                (02) 6639-6688 分機 55822
                 <br />
-                <a href="mailto:info@example.com" className="underline">
-                  info@example.com
-                </a>
+                <a href="mailto:lcyan@mail.ntue.edu.tw" className="underline">lcyan@mail.ntue.edu.tw</a>
                 <br />
                 <br />
                 對於我們的網站您是否有任何好奇或建議？歡迎您留言反饋，和我們分享您的想法。

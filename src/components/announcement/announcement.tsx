@@ -40,7 +40,7 @@ const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
             <h2 className="font-semibold text-2xl md:text-3xl text-gray-50">
               <div className="flex items-center gap-1.5">
                 <IconSpeakerphone className="size-8 -rotate-12" />
-                <span dangerouslySetInnerHTML={{ __html: title || "" }} />
+                <div dangerouslySetInnerHTML={{ __html: title || "" }} />
               </div>
             </h2>
           )}

@@ -21,7 +21,7 @@ const Breadcrumb: React.FC<{
 
   return (
     <nav className="flex mt-4" aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+      <ol className="inline-flex items-center flex-wrap space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li className="inline-flex items-center">
           <Link
             href="/"
@@ -46,7 +46,7 @@ const Breadcrumb: React.FC<{
                     dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
                   />
                 ) : (
-                  <span className="ms-1 text-sm font-medium text-gray-400 md:ms-2"
+                  <div className="ms-1 text-sm font-medium text-gray-400 md:ms-2"
                     dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
                   />
                 )}
