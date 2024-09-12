@@ -42,11 +42,11 @@ const Breadcrumb: React.FC<{
                 {index < pathSegments.length - 1 ? (
                   <Link
                     href={href}
-                    className="ms-1 text-sm font-medium text-gray-600 hover:text-denim-600 md:ms-2"
+                    className="ms-1 text-sm font-medium text-gray-600 hover:text-denim-600 md:ms-2 line-clamp-1"
                     dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
                   />
                 ) : (
-                  <div className="ms-1 text-sm font-medium text-gray-400 md:ms-2"
+                  <div className="ms-1 text-sm font-medium text-gray-400 md:ms-2 line-clamp-1"
                     dangerouslySetInnerHTML={{ __html: getBreadcrumbName(segment) || givenName || decodeURIComponent(segment) }}
                   />
                 )}
