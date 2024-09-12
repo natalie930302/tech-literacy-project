@@ -162,6 +162,7 @@ const findCourseData = async (courseId?: string): Promise<any | null> => {
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_COURSE_DATABASE_ID || "",
+      sorts: [{ property: "ID", direction: "ascending" }],
     })) as any;
 
     const data = response.results.map((result: any) => ({
@@ -206,10 +207,11 @@ const findExpertiseData = async (): Promise<any | null> => {
   try {
     const response = (await notion.databases.query({
       database_id: process.env.NOTION_EXPERTISE_DATABASE_ID || "",
+      sorts: [{ property: "ID", direction: "ascending" }],
     })) as any;
 
     const data = response.results.map((result: any) => ({
-      ID: extractContent(result.properties.ID?.title, "text") || "",
+      ID: extractContent(result.properties.Number?.title, "text") || "",
       Name: extractContent(result.properties.Name?.rich_text, "text") || result.properties.Name?.formula?.string || "",
     }));
 
@@ -241,6 +243,7 @@ const findActivityData = async (activityId: string): Promise<any | null> => {
           },
         ],
       },
+      sorts: [{ property: "ID", direction: "ascending" }],
     })) as any;
 
     const data = response.results[0];
@@ -274,6 +277,7 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
           equals: true,
         },
       },
+      sorts: [{ property: "ID", direction: "ascending" }],
     })) as any;
 
     const result = response.results
@@ -301,7 +305,7 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
   }
 };
 
-// 查找評論數據
+// 發送評論數據
 const findAllCommentData = async (routePath?: string): Promise<any | null> => {
   try {
     const response = (await notion.databases.query({
