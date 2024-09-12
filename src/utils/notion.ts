@@ -16,7 +16,7 @@ const extractContent = (contentArray: any[], key: string): string | undefined =>
       ?.map((item: any) => {
         const content = item?.[key]?.content || "";
         const link = item?.href;
-        return link ? `<a class="underline" href="${link}" target="_blank">${content}</a>` : content;
+        return link ? `<a class="underline hover:text-denim-500" href="${link}" target="_blank">${content}</a>` : content;
       })
       .join("") || undefined
   );
