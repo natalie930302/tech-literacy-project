@@ -1,9 +1,9 @@
 export const revalidate = 60;
 
+import Image from "next/image";
 import { findAllActivityData } from "@/utils/notion";
 
 import Breadcrumb from "@/components/breadcrumb/breadcrumb";
-import ExpandableImage from "@/components/expandable-image/expandable-image";
 import Link from "next/link";
 
 const Page: React.FC = async ({ params }: any) => {
@@ -40,11 +40,13 @@ const Page: React.FC = async ({ params }: any) => {
                   <div className="grid grid-cols-3 md:grid-cols-8 gap-3">
                     {
                       item.image.slice(0, 5).map((image: any, index: any) => (
-                        <ExpandableImage
+                        <Image
                           key={index}
                           src={image.url}
                           alt={image.name}
-                          className="aspect-square object-cover object-center"
+                          width={250}
+                          height={250}
+                          className={`aspect-square object-cover object-center ${parseInt(index) > 2 ? "hidden md:block" : ""}`}
                         />
                       ))
                     }

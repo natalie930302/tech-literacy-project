@@ -14,8 +14,8 @@ const ExpandableImage: React.FC<any> = ({ src, alt, ...rest }) => {
         {...rest}
         src={src}
         alt={alt}
-        width={500}
-        height={500}
+        width={250}
+        height={250}
         onClick={handleExpand}
         className={`cursor-pointer bg-gray-400 ${rest.className}`}
         loading="lazy"
