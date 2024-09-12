@@ -46,7 +46,7 @@ const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
           )}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-8">
             <div className="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-2 [&>*:nth-child(-n+2)]:lg:col-span-1 gap-3 lg:gap-6">
-              {items.map((announcement, index) => (
+              {items.reverse().map((announcement, index) => (
                 <AnnouncementItem
                   key={index}
                   title={announcement.title}

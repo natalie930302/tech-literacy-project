@@ -32,6 +32,7 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
       switch (type) {
         case "Article":
           return {
+            ID: data.ID?.unique_id?.number || 0,
             name: extractContent(data.Name?.title, "text") || "",
             title: extractContent(data.Title?.rich_text, "text") || "",
             description:
@@ -49,6 +50,7 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
         case "QuickLinkCard":
         case "Timeline":
           return {
+            ID: data.ID?.unique_id?.number || 0,
             name: extractContent(data.Name?.title, "text") || "",
             title: extractContent(data.Title?.rich_text, "text") || "",
             image:
@@ -65,6 +67,7 @@ const getPageDetails = async (id: string, type: string): Promise<any> => {
         case "QuickLinkCardItem":
         case "TimelineItem":
           return {
+            ID: data.ID?.unique_id?.number || 0,
             title: extractContent(data.Title?.title, "text") || "",
             description:
               extractContent(data.Description?.rich_text, "text") || "",
@@ -107,7 +110,14 @@ const extractRelationIds = async (
   const promises = prop.relation.map((rel) =>
     limit(() => getPageDetails(rel.id, type || ""))
   );
-  return Promise.all(promises);
+
+  const results = await Promise.all(promises);
+
+  const sortedResults = results.sort((a: any, b: any) => {
+    return a.ID - b.ID;
+  });
+
+  return sortedResults;
 };
 
 // 查找路由數據
