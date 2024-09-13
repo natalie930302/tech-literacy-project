@@ -21,7 +21,7 @@ const Page: React.FC = async () => {
           <Breadcrumb />
         </div>
       </section>
-      <section className="bg-gray-200/55">
+      <section id="PartnerQuickCard" className="bg-gray-200/55">
         <div className="container py-8 md:py-16">
           <div className="col-span-1 md:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {PartnerQuickCard.items.map((item: any, index: any) => (

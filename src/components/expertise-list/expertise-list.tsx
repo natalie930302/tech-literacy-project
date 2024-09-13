@@ -9,7 +9,7 @@ const ExpertiseList: React.FC = async () => {
   const Expertise: Expertise[] = await findExpertiseData();
 
   return (
-    <section id="micro-programs-in-technology">
+    <section id="ExpertiseList">
       <div className="container py-8 md:py-16">
         <div className="flex flex-col gap-4 md:gap-8">
           <h2 className="font-semibold text-2xl md:text-3xl">國小教師加註科技領域專長通過名單</h2>

@@ -29,11 +29,12 @@ const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
 };
 interface AnnouncementProps {
   title?: string;
+  sectionId: string;
   items: AnnouncementItemProps[];
 }
-const Announcement: React.FC<AnnouncementProps> = ({ title, items }) => {
+const Announcement: React.FC<AnnouncementProps> = ({ title, sectionId, items }) => {
   return (
-    <section className="bg-denim-800">
+    <section id={sectionId} className="bg-denim-800">
       <div className="container py-8 md:py-16">
         <div className="flex flex-col gap-4 md:gap-8">
           {title && (

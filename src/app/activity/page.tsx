@@ -21,7 +21,7 @@ const Page: React.FC = async () => {
           <Breadcrumb />
         </div>
       </section>
-      <Announcement items={ActivityAnnouncement.items} />
+      <Announcement sectionId="ActivityAnnouncement" items={ActivityAnnouncement.items} />
     </main>
   );
 };

@@ -36,9 +36,10 @@ const Page: React.FC = async () => {
       </section>
       <Announcement
         title={ExpertiseAnnouncement.title}
+        sectionId="ExpertiseAnnouncement"
         items={ExpertiseAnnouncement.items}
       />
-      <section id="minor-specialization-guidelines">
+      <section id="ExpertiseDescription">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl">專長加註辦法</h2>

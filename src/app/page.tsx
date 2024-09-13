@@ -58,6 +58,7 @@ const Page: React.FC = async () => {
       </section>
       <Announcement
         title={LatestAnnouncement.title}
+        sectionId="LatestAnnouncement"
         items={LatestAnnouncement.items}
       />
       <Team title={MeetTheTeam.title} items={MeetTheTeam.items} />

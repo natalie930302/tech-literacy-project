@@ -27,7 +27,7 @@ const CourseTable: React.FC = async () => {
   );
 
   return (
-    <section id="micro-programs-in-technology">
+    <section id="CourseTable">
       <div className="container py-8 md:py-16">
         <div className="flex flex-col gap-4 md:gap-8">
           <h2 className="font-semibold text-2xl md:text-3xl">課程架構</h2>

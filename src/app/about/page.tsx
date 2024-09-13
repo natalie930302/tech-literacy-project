@@ -34,7 +34,7 @@ const Page: React.FC = async () => {
           <Breadcrumb />
         </div>
       </section>
-      <section className="bg-gray-200/55">
+      <section id="ProjectOverview" className="bg-gray-200/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectOverview?.title || "" }} />
@@ -53,7 +53,7 @@ const Page: React.FC = async () => {
           </div>
         </div>
       </section>
-      <section>
+      <section id="ProjectStructure">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectStructure?.title || "" }} />
@@ -61,7 +61,7 @@ const Page: React.FC = async () => {
               {ProjectStructure.items.map((item: any, index: any) => (
                 <MindMapCard {...item} key={index} />
               ))}
-              <div className="flex max-w-2xl">
+              <div id="ProjectPurpose" className="flex max-w-2xl">
                 <article>
                   <h4 className="font-semibold text-lg mb-2" dangerouslySetInnerHTML={{ __html: ProjectPurpose?.title || "" }} />
                   <div dangerouslySetInnerHTML={{ __html: ProjectPurpose?.description || ""}} />
@@ -79,7 +79,7 @@ const Page: React.FC = async () => {
           </div>
         </div>
       </section>
-      <section className="bg-denim-100/55">
+      <section id="ProjectTimeline" className="bg-denim-100/55">
         <div className="container py-8 md:py-16">
           <div className="flex flex-col gap-4 md:gap-8">
             <h2 className="font-semibold text-2xl md:text-3xl text-center" dangerouslySetInnerHTML={{ __html: ProjectTimeline?.title || "" }} />

@@ -69,7 +69,7 @@ interface TeamProps {
 }
 const Team: React.FC<TeamProps> = ({ title, items }) => {
   return (
-    <section>
+    <section id="MeetTheTeam">
       <div className="container py-8 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-9 gap-4 md:gap-8">
           <div className="col-span-1 md:col-span-9 flex flex-col justify-center items-center">
