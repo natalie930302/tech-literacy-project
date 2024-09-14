@@ -50,6 +50,7 @@ const config: Config = {
       square: "square",
       roman: "upper-roman",
       alpha: "lower-alpha",
+      "trad-chinese-informal": "trad-chinese-informal",
     },
     extend: {
       fontFamily: {
