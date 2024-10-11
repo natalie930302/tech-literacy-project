@@ -287,7 +287,7 @@ const findAllActivityData = async (activityType?: string): Promise<any | null> =
           equals: true,
         },
       },
-      sorts: [{ property: "ID", direction: "ascending" }],
+      sorts: [{ property: "ID", direction: "descending" }],
     })) as any;
 
     const result = response.results
