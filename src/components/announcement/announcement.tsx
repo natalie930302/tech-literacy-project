@@ -63,6 +63,7 @@ const Announcement: React.FC<AnnouncementProps> = ({ title, sectionId, items }) 
                 width={1080}
                 height={1080}
                 className="w-full h-full max-h-48 lg:max-h-64 object-contain object-right-top p-4 ml-auto"
+                priority={true}
               />
             </div>
           </div>

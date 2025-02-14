@@ -18,7 +18,7 @@ const ExpandableImage: React.FC<any> = ({ src, alt, ...rest }) => {
         height={250}
         onClick={handleExpand}
         className={`cursor-pointer bg-gray-400 ${rest.className}`}
-        loading="lazy"
+        priority={true}
       />
       <div
         className={`backdrop !z-50 opacity-0 [&.active]:opacity-100 size-[1px] md:!size-[1px] [&.active]:!w-screen [&.active]:!h-screen transition-show [&.active]:transition-hide

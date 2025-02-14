@@ -38,6 +38,7 @@ const Page: React.FC = async () => {
                 width={1080}
                 height={1080}
                 className="w-full h-full max-h-60 aspect-square object-contain object-center m-auto"
+                priority={true}
               />
             </div>
             <div className="col-span-1 md:col-span-9 flex flex-col justify-center items-center">

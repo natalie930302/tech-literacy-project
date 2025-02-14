@@ -23,6 +23,7 @@ const Card: React.FC<CardProps> = ({ title, image, link }) => {
           width={500}
           height={500}
           className="w-full max-w-48 h-full aspect-square object-contain object-center m-auto"
+          priority={true}
         />
         <h4 className="font-bold text-xl text-center" dangerouslySetInnerHTML={{ __html: title || "" }} />
       </div>

@@ -47,6 +47,7 @@ const Page: React.FC = async ({ params }: any) => {
                           width={250}
                           height={250}
                           className={`aspect-square object-cover object-center ${parseInt(index) > 2 ? "hidden md:block" : ""}`}
+                          priority={true}
                         />
                       ))
                     }

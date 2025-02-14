@@ -79,6 +79,7 @@ const Page: React.FC = async ({ params }: any) => {
                 width={1800}
                 height={1800}
                 className="w-full aspect-[2/1] bg-gray-400 rounded-md object-cover object-center"
+                priority={true}
               />
               <div className="md:hidden col-span-2 md:pl-6 lg:pl-8">
                 <div className="flex flex-col gap-4 divide-y *:pt-4">

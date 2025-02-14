@@ -30,6 +30,7 @@ const TeamItem: React.FC<TeamItemProps> = ({
                 width={500}
                 height={500}
                 className="size-full aspect-square object-cover object-center bg-gray-400 m-auto"
+                priority={true}
               />
               <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full bg-denim-500/50 transition-show group-hover:transition-hide">
                 <div className="flex flex-col justify-end gap-1 size-full p-4">
@@ -48,6 +49,7 @@ const TeamItem: React.FC<TeamItemProps> = ({
               width={500}
               height={500}
               className="size-full aspect-square object-cover object-center bg-gray-400 m-auto"
+              priority={true}
             />
             <div className="absolute top-0 opacity-0 group-hover:opacity-100 backdrop-blur-lg backdrop-brightness-105 size-px group-hover:size-full bg-denim-500/50 transition-show group-hover:transition-hide">
               <div className="flex flex-col justify-end gap-1 size-full p-4">
